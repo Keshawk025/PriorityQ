@@ -1,0 +1,31 @@
+lead_id,source,customer_type,vehicle,part_needed,estimated_order_value_inr,message
+L0179,phone,fleet,2020 Hyundai Creta,starter motor,6200,The existing starter motor has failed and caused downtime. Need a same-day quotation.
+L0156,whatsapp,garage,2020 Hyundai Creta,suspension strut,115000,We are shortlisting suppliers for a suspension strut purchase later this month.
+L0177,phone,individual,2017 Honda City,engine mount,3500,I have approval to buy the engine mount today. Please reserve stock and send payment details.
+L0158,website,individual,2023 Mahindra XUV700,starter motor,24000,Interested in ordering the starter motor; can you share price and normal shipping times? Please respond by email.
+L0168,walk-in,fleet,2018 Toyota Innova,brake pads,47000,Can you help identify the correct brake pads variant? Purchase likely next week.
+L0149,whatsapp,garage,2023 Mahindra XUV700,side mirror,80000,Need to finalize this side mirror order before close of business today.
+L0160,whatsapp,reseller,2021 Tata Nexon,tail lamp,9700,I am comparing many websites for a tail lamp; no immediate requirement.
+L0155,phone,fleet,2023 Mahindra XUV700,front bumper,24000,Researching alternatives to the front bumper; timing is undecided.
+L0176,walk-in,reseller,2016 Ford EcoSport,suspension strut,9700,This is just a preliminary inquiry about the suspension strut; we might buy next quarter.
+L0161,whatsapp,fleet,2020 Hyundai Creta,suspension strut,36000,Our garage may order the suspension strut soon once the customer approves the job.
+L0169,whatsapp,reseller,2021 Tata Nexon,brake pads,47000,Potential requirement later this year for a brake pads; no confirmed vehicle in workshop.
+L0148,referral,reseller,2022 Kia Seltos,AC compressor,24000,"Hello, ready to place an order if the AC compressor can be dispatched within 24 hours."
+L0170,walk-in,individual,2021 Tata Nexon,headlight unit,80000,Please send a general brochure with headlight unit options; only exploring. Please respond by email.
+L0171,phone,individual,2019 Maruti Baleno,suspension strut,36000,Just browsing prices for the suspension strut; no purchase decision yet. Please respond by email.
+L0159,whatsapp,individual,2019 Maruti Baleno,engine mount,80000,This is urgent for a customer delivery tomorrow; confirm availability of the engine mount now.
+L0178,referral,garage,2021 Tata Nexon,front bumper,9700,Need to finalize this front bumper order before close of business today. Please respond by email.
+L0162,referral,garage,2020 Hyundai Creta,radiator assembly,14000,This is just a preliminary inquiry about the radiator assembly; we might buy next quarter.
+L0180,walk-in,reseller,2018 Toyota Innova,headlight unit,36000,Can you help identify the correct headlight unit variant? Purchase likely next week.
+L0173,referral,individual,2020 Hyundai Creta,tail lamp,9700,"Curious about the tail lamp specifications, but no budget has been approved."
+L0164,whatsapp,individual,2020 Hyundai i20,wheel bearing,47000,Need to finalize this wheel bearing order before close of business today.
+L0163,website,reseller,2022 Kia Seltos,fuel pump,115000,I expect to buy a fuel pump after confirming the final customer estimate.
+L0174,whatsapp,fleet,2018 Honda Jazz,wheel bearing,9700,Can pay now. Is the wheel bearing in stock for express dispatch?
+L0167,referral,garage,2022 Kia Seltos,starter motor,18500,Researching alternatives to the starter motor; timing is undecided.
+L0157,referral,garage,2020 Hyundai Creta,headlight unit,18500,Interested in ordering the headlight unit; can you share price and normal shipping times?
+L0165,whatsapp,fleet,2020 Hyundai Creta,AC compressor,24000,"Need the AC compressor right away, no time for a long comparison; please send a quote."
+L0166,referral,garage,2018 Honda Jazz,fuel pump,80000,"Hello, could you confirm compatibility and a quotation for the fuel pump?"
+L0175,phone,reseller,2020 Hyundai i20,engine mount,36000,This is urgent for a customer delivery tomorrow; confirm availability of the engine mount now.
+L0153,phone,fleet,2020 Hyundai Creta,radiator assembly,14000,"Need the radiator assembly within the coming week, but we can wait for regular delivery."
+L0172,whatsapp,reseller,2021 Tata Nexon,fuel pump,80000,"Hello, i may need a fuel pump someday. Please share your catalog for reference."
+L0154,walk-in,reseller,2016 Ford EcoSport,wheel bearing,3500,I am checking the wheel bearing for next week; please share expected delivery.

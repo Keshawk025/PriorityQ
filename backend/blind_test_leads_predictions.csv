@@ -1,0 +1,31 @@
+lead_id,source,customer_type,vehicle,part_needed,estimated_order_value_inr,message,predicted_priority,confidence,probability_High,probability_Low,probability_Medium
+L0179,phone,fleet,2020 Hyundai Creta,starter motor,6200,The existing starter motor has failed and caused downtime. Need a same-day quotation.,High,0.6835,0.6835,0.151,0.1655
+L0156,whatsapp,garage,2020 Hyundai Creta,suspension strut,115000,We are shortlisting suppliers for a suspension strut purchase later this month.,Low,0.4502,0.2573,0.4502,0.2926
+L0177,phone,individual,2017 Honda City,engine mount,3500,I have approval to buy the engine mount today. Please reserve stock and send payment details.,High,0.6822,0.6822,0.1517,0.1661
+L0158,website,individual,2023 Mahindra XUV700,starter motor,24000,Interested in ordering the starter motor; can you share price and normal shipping times? Please respond by email.,Medium,0.7282,0.1533,0.1185,0.7282
+L0168,walk-in,fleet,2018 Toyota Innova,brake pads,47000,Can you help identify the correct brake pads variant? Purchase likely next week.,Medium,0.7858,0.102,0.1121,0.7858
+L0149,whatsapp,garage,2023 Mahindra XUV700,side mirror,80000,Need to finalize this side mirror order before close of business today.,High,0.6088,0.6088,0.206,0.1852
+L0160,whatsapp,reseller,2021 Tata Nexon,tail lamp,9700,I am comparing many websites for a tail lamp; no immediate requirement.,Low,0.6337,0.1992,0.6337,0.1671
+L0155,phone,fleet,2023 Mahindra XUV700,front bumper,24000,Researching alternatives to the front bumper; timing is undecided.,Low,0.5674,0.2045,0.5674,0.2281
+L0176,walk-in,reseller,2016 Ford EcoSport,suspension strut,9700,This is just a preliminary inquiry about the suspension strut; we might buy next quarter.,Low,0.7391,0.1495,0.7391,0.1114
+L0161,whatsapp,fleet,2020 Hyundai Creta,suspension strut,36000,Our garage may order the suspension strut soon once the customer approves the job.,Medium,0.6277,0.2038,0.1685,0.6277
+L0169,whatsapp,reseller,2021 Tata Nexon,brake pads,47000,Potential requirement later this year for a brake pads; no confirmed vehicle in workshop.,Low,0.7181,0.1572,0.7181,0.1247
+L0148,referral,reseller,2022 Kia Seltos,AC compressor,24000,"Hello, ready to place an order if the AC compressor can be dispatched within 24 hours.",High,0.7095,0.7095,0.1463,0.1442
+L0170,walk-in,individual,2021 Tata Nexon,headlight unit,80000,Please send a general brochure with headlight unit options; only exploring. Please respond by email.,Low,0.5869,0.1809,0.5869,0.2322
+L0171,phone,individual,2019 Maruti Baleno,suspension strut,36000,Just browsing prices for the suspension strut; no purchase decision yet. Please respond by email.,Low,0.5236,0.247,0.5236,0.2294
+L0159,whatsapp,individual,2019 Maruti Baleno,engine mount,80000,This is urgent for a customer delivery tomorrow; confirm availability of the engine mount now.,High,0.5881,0.5881,0.1969,0.215
+L0178,referral,garage,2021 Tata Nexon,front bumper,9700,Need to finalize this front bumper order before close of business today. Please respond by email.,High,0.5413,0.5413,0.1949,0.2639
+L0162,referral,garage,2020 Hyundai Creta,radiator assembly,14000,This is just a preliminary inquiry about the radiator assembly; we might buy next quarter.,Low,0.6727,0.1839,0.6727,0.1434
+L0180,walk-in,reseller,2018 Toyota Innova,headlight unit,36000,Can you help identify the correct headlight unit variant? Purchase likely next week.,Medium,0.814,0.0856,0.1004,0.814
+L0173,referral,individual,2020 Hyundai Creta,tail lamp,9700,"Curious about the tail lamp specifications, but no budget has been approved.",Low,0.7552,0.1357,0.7552,0.1091
+L0164,whatsapp,individual,2020 Hyundai i20,wheel bearing,47000,Need to finalize this wheel bearing order before close of business today.,High,0.5532,0.5532,0.2473,0.1995
+L0163,website,reseller,2022 Kia Seltos,fuel pump,115000,I expect to buy a fuel pump after confirming the final customer estimate.,Medium,0.5363,0.2248,0.2389,0.5363
+L0174,whatsapp,fleet,2018 Honda Jazz,wheel bearing,9700,Can pay now. Is the wheel bearing in stock for express dispatch?,High,0.6197,0.6197,0.1991,0.1812
+L0167,referral,garage,2022 Kia Seltos,starter motor,18500,Researching alternatives to the starter motor; timing is undecided.,Low,0.5879,0.2061,0.5879,0.2061
+L0157,referral,garage,2020 Hyundai Creta,headlight unit,18500,Interested in ordering the headlight unit; can you share price and normal shipping times?,Medium,0.7171,0.1552,0.1277,0.7171
+L0165,whatsapp,fleet,2020 Hyundai Creta,AC compressor,24000,"Need the AC compressor right away, no time for a long comparison; please send a quote.",High,0.6604,0.6604,0.1642,0.1754
+L0166,referral,garage,2018 Honda Jazz,fuel pump,80000,"Hello, could you confirm compatibility and a quotation for the fuel pump?",Medium,0.5284,0.2641,0.2074,0.5284
+L0175,phone,reseller,2020 Hyundai i20,engine mount,36000,This is urgent for a customer delivery tomorrow; confirm availability of the engine mount now.,High,0.5881,0.5881,0.1969,0.215
+L0153,phone,fleet,2020 Hyundai Creta,radiator assembly,14000,"Need the radiator assembly within the coming week, but we can wait for regular delivery.",High,0.4618,0.4618,0.1929,0.3453
+L0172,whatsapp,reseller,2021 Tata Nexon,fuel pump,80000,"Hello, i may need a fuel pump someday. Please share your catalog for reference.",Low,0.4326,0.2692,0.4326,0.2981
+L0154,walk-in,reseller,2016 Ford EcoSport,wheel bearing,3500,I am checking the wheel bearing for next week; please share expected delivery.,Medium,0.7072,0.105,0.1878,0.7072

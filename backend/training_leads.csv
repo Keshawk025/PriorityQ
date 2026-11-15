@@ -1,0 +1,151 @@
+lead_id,source,customer_type,vehicle,part_needed,estimated_order_value_inr,message,priority
+L0087,referral,garage,2018 Honda Jazz,engine mount,24000,Multiple vehicles are waiting on the engine mount; urgent fleet replacement required.,High
+L0108,referral,individual,2020 Hyundai i20,door panel,24000,Multiple vehicles are waiting on the door panel; urgent fleet replacement required.,High
+L0132,website,reseller,2023 Mahindra XUV700,starter motor,14000,Please confirm your best rate on the starter motor; planning to order in a few days.,Medium
+L0066,website,garage,2023 Mahindra XUV700,suspension strut,115000,"Hello, ready to place an order if the suspension strut can be dispatched within 24 hours. Please respond by email.",High
+L0013,phone,reseller,2020 Hyundai Creta,starter motor,115000,I expect to buy a starter motor after confirming the final customer estimate. Please respond by email.,Medium
+L0088,walk-in,individual,2023 Mahindra XUV700,alternator,24000,"Need the alternator right away, no time for a long comparison; please send a quote.",High
+L0017,walk-in,fleet,2020 Hyundai Creta,door panel,36000,Multiple vehicles are waiting on the door panel; urgent fleet replacement required.,High
+L0106,walk-in,individual,2019 Maruti Baleno,alternator,9700,"Hello, need the alternator right away, no time for a long comparison; please send a quote.",High
+L0114,website,reseller,2020 Hyundai Creta,AC compressor,3500,Can you help identify the correct AC compressor variant? Purchase likely next week. Please respond by email.,Medium
+L0147,walk-in,reseller,2021 Tata Nexon,starter motor,47000,I am checking the starter motor for next week; please share expected delivery.,Medium
+L0008,website,reseller,2020 Hyundai i20,alternator,3500,I may need a alternator someday. Please share your catalog for reference.,Low
+L0142,website,reseller,2022 Kia Seltos,engine mount,115000,I have approval to buy the engine mount today. Please reserve stock and send payment details.,High
+L0003,whatsapp,garage,2018 Toyota Innova,wheel bearing,9700,Please confirm your best rate on the wheel bearing; planning to order in a few days.,Medium
+L0086,phone,individual,2016 Ford EcoSport,headlight unit,9700,"Curious about the headlight unit specifications, but no budget has been approved.",Low
+L0127,whatsapp,fleet,2018 Honda Jazz,AC compressor,9700,Our garage may order the AC compressor soon once the customer approves the job.,Medium
+L0084,referral,garage,2022 Kia Seltos,starter motor,3500,Can pay now. Is the starter motor in stock for express dispatch?,High
+L0020,phone,fleet,2020 Hyundai Creta,clutch kit,115000,This is urgent for a customer delivery tomorrow; confirm availability of the clutch kit now.,High
+L0103,phone,fleet,2016 Ford EcoSport,alternator,3500,Can you help identify the correct alternator variant? Purchase likely next week.,Medium
+L0052,phone,reseller,2020 Hyundai i20,suspension strut,24000,Please send a general brochure with suspension strut options; only exploring.,Low
+L0078,referral,individual,2017 Honda City,front bumper,3500,"Collecting general information on the front bumper, not planning an order soon.",Low
+L0085,website,garage,2018 Honda Jazz,engine mount,115000,Just browsing prices for the engine mount; no purchase decision yet.,Low
+L0043,phone,fleet,2018 Honda Jazz,AC compressor,14000,"Hello, please quote the AC compressor for a repair planned next week. Please respond by email.",Medium
+L0058,walk-in,fleet,2020 Hyundai Creta,suspension strut,9700,"Collecting general information on the suspension strut, not planning an order soon.",Low
+L0049,whatsapp,fleet,2020 Hyundai Creta,side mirror,47000,Our driver is stranded. Need the side mirror and an immediate callback.,High
+L0116,website,fleet,2016 Ford EcoSport,alternator,9700,"Hello, researching alternatives to the alternator; timing is undecided. Please respond by email.",Low
+L0024,walk-in,garage,2017 Honda City,alternator,3500,Can you send a quote for the alternator and explain the warranty?,Medium
+L0144,website,reseller,2016 Ford EcoSport,starter motor,80000,Can you help identify the correct starter motor variant? Purchase likely next week.,Medium
+L0068,phone,individual,2017 Honda City,brake pads,9700,I am checking the brake pads for next week; please share expected delivery.,Medium
+L0012,website,garage,2022 Kia Seltos,clutch kit,80000,I may need a clutch kit someday. Please share your catalog for reference.,Low
+L0056,website,garage,2018 Toyota Innova,clutch kit,36000,Need to finalize this clutch kit order before close of business today.,High
+L0027,whatsapp,individual,2023 Mahindra XUV700,clutch kit,6200,Can you help identify the correct clutch kit variant? Purchase likely next week.,Medium
+L0122,referral,reseller,2023 Mahindra XUV700,wheel bearing,6200,Workshop is planning a scheduled replacement of the wheel bearing. Please advise options.,Medium
+L0090,walk-in,individual,2020 Hyundai i20,clutch kit,6200,Please send a general brochure with clutch kit options; only exploring.,Low
+L0117,walk-in,fleet,2019 Maruti Baleno,suspension strut,80000,Can you help identify the correct suspension strut variant? Purchase likely next week.,Medium
+L0019,whatsapp,fleet,2023 Mahindra XUV700,starter motor,115000,Workshop is planning a scheduled replacement of the starter motor. Please advise options. Please respond by email.,Medium
+L0014,referral,garage,2017 Honda City,AC compressor,24000,"Curious about the AC compressor specifications, but no budget has been approved.",Low
+L0110,referral,reseller,2017 Honda City,headlight unit,18500,"Hello, potential requirement later this year for a headlight unit; no confirmed vehicle in workshop.",Low
+L0096,walk-in,fleet,2017 Honda City,suspension strut,9700,Can pay now. Is the suspension strut in stock for express dispatch?,High
+L0131,walk-in,reseller,2018 Honda Jazz,suspension strut,6200,Can pay now. Is the suspension strut in stock for express dispatch?,High
+L0134,whatsapp,garage,2020 Hyundai Creta,headlight unit,9700,Workshop is planning a scheduled replacement of the headlight unit. Please advise options.,Medium
+L0057,whatsapp,fleet,2023 Mahindra XUV700,engine mount,47000,The existing engine mount has failed and caused downtime. Need a same-day quotation.,High
+L0016,walk-in,fleet,2016 Ford EcoSport,radiator assembly,80000,Can you send a quote for the radiator assembly and explain the warranty? Please respond by email.,Medium
+L0061,whatsapp,individual,2019 Maruti Baleno,starter motor,36000,"Hello, ready to place an order if the starter motor can be dispatched within 24 hours.",High
+L0021,phone,reseller,2016 Ford EcoSport,side mirror,80000,I am checking the side mirror for next week; please share expected delivery.,Medium
+L0023,referral,garage,2017 Honda City,wheel bearing,80000,Potential requirement later this year for a wheel bearing; no confirmed vehicle in workshop.,Low
+L0121,whatsapp,individual,2021 Tata Nexon,fuel pump,9700,"Collecting general information on the fuel pump, not planning an order soon.",Low
+L0138,whatsapp,garage,2022 Kia Seltos,wheel bearing,63000,Our vehicle is off the road and we need the wheel bearing today. Please call back immediately.,High
+L0028,phone,garage,2020 Hyundai i20,radiator assembly,47000,"Need the radiator assembly right away, no time for a long comparison; please send a quote.",High
+L0046,walk-in,garage,2018 Toyota Innova,suspension strut,24000,Only researching approximate costs for the suspension strut for a future project.,Low
+L0006,whatsapp,fleet,2020 Hyundai i20,fuel pump,36000,"Hello, i am comparing many websites for a fuel pump; no immediate requirement.",Low
+L0083,referral,reseller,2019 Maruti Baleno,suspension strut,115000,Please confirm your best rate on the suspension strut; planning to order in a few days.,Medium
+L0036,phone,fleet,2020 Hyundai Creta,alternator,14000,Multiple vehicles are waiting on the alternator; urgent fleet replacement required.,High
+L0102,walk-in,garage,2020 Hyundai Creta,side mirror,3500,Multiple vehicles are waiting on the side mirror; urgent fleet replacement required.,High
+L0030,website,reseller,2018 Honda Jazz,brake pads,47000,Our vehicle is off the road and we need the brake pads today. Please call back immediately.,High
+L0070,whatsapp,reseller,2018 Honda Jazz,alternator,24000,I am checking the alternator for next week; please share expected delivery.,Medium
+L0097,walk-in,fleet,2018 Honda Jazz,suspension strut,36000,Potential requirement later this year for a suspension strut; no confirmed vehicle in workshop.,Low
+L0109,walk-in,individual,2020 Hyundai Creta,AC compressor,24000,Our garage may order the AC compressor soon once the customer approves the job.,Medium
+L0018,walk-in,reseller,2020 Hyundai i20,engine mount,36000,Ready to place an order if the engine mount can be dispatched within 24 hours. Please respond by email.,High
+L0034,phone,reseller,2020 Hyundai Creta,AC compressor,63000,Our driver is stranded. Need the AC compressor and an immediate callback. Please respond by email.,High
+L0125,referral,garage,2018 Toyota Innova,AC compressor,9700,Could you confirm compatibility and a quotation for the AC compressor?,Medium
+L0119,referral,reseller,2018 Honda Jazz,door panel,14000,"Curious about the door panel specifications, but no budget has been approved.",Low
+L0045,website,garage,2021 Tata Nexon,door panel,36000,Please quote the door panel for a repair planned next week. Please respond by email.,Medium
+L0124,website,fleet,2016 Ford EcoSport,suspension strut,63000,"Hello, only researching approximate costs for the suspension strut for a future project.",Low
+L0152,referral,garage,2023 Mahindra XUV700,front bumper,80000,Please confirm your best rate on the front bumper; planning to order in a few days.,Medium
+L0137,phone,individual,2022 Kia Seltos,engine mount,36000,"Need the engine mount right away, no time for a long comparison; please send a quote.",High
+L0072,whatsapp,reseller,2022 Kia Seltos,radiator assembly,47000,The workshop cannot finish the repair without this radiator assembly; need a firm quote urgently.,High
+L0123,whatsapp,garage,2020 Hyundai i20,tail lamp,6200,Our garage may order the tail lamp soon once the customer approves the job.,Medium
+L0099,walk-in,individual,2018 Honda Jazz,clutch kit,80000,Please confirm your best rate on the clutch kit; planning to order in a few days.,Medium
+L0033,website,reseller,2018 Honda Jazz,wheel bearing,36000,Researching alternatives to the wheel bearing; timing is undecided.,Low
+L0022,referral,fleet,2022 Kia Seltos,tail lamp,47000,Can pay now. Is the tail lamp in stock for express dispatch?,High
+L0059,referral,garage,2022 Kia Seltos,tail lamp,47000,We are not ready to purchase the tail lamp now; checking market availability. Please respond by email.,Low
+L0133,walk-in,fleet,2020 Hyundai i20,AC compressor,24000,This is just a preliminary inquiry about the AC compressor; we might buy next quarter.,Low
+L0060,phone,fleet,2020 Hyundai Creta,AC compressor,14000,We are not ready to purchase the AC compressor now; checking market availability.,Low
+L0118,walk-in,reseller,2018 Toyota Innova,headlight unit,47000,Can you send a quote for the headlight unit and explain the warranty?,Medium
+L0129,whatsapp,garage,2019 Maruti Baleno,wheel bearing,3500,"Collecting general information on the wheel bearing, not planning an order soon.",Low
+L0082,website,garage,2020 Hyundai i20,door panel,36000,We are not ready to purchase the door panel now; checking market availability.,Low
+L0095,whatsapp,reseller,2020 Hyundai i20,fuel pump,6200,"Hello, workshop is planning a scheduled replacement of the fuel pump. Please advise options.",Medium
+L0135,phone,garage,2021 Tata Nexon,starter motor,9700,This is just a preliminary inquiry about the starter motor; we might buy next quarter.,Low
+L0025,phone,garage,2023 Mahindra XUV700,front bumper,9700,"Hello, i expect to buy a front bumper after confirming the final customer estimate.",Medium
+L0037,whatsapp,individual,2020 Hyundai Creta,AC compressor,18500,Ready to place an order if the AC compressor can be dispatched within 24 hours.,High
+L0002,whatsapp,reseller,2018 Honda Jazz,AC compressor,14000,I may need a AC compressor someday. Please share your catalog for reference.,Low
+L0111,walk-in,garage,2018 Honda Jazz,front bumper,14000,I am comparing many websites for a front bumper; no immediate requirement.,Low
+L0130,phone,garage,2021 Tata Nexon,headlight unit,24000,I have approval to buy the headlight unit today. Please reserve stock and send payment details.,High
+L0041,phone,garage,2020 Hyundai Creta,radiator assembly,6200,"Need the radiator assembly right away, no time for a long comparison; please send a quote.",High
+L0091,phone,garage,2018 Toyota Innova,AC compressor,3500,"Hello, this is urgent for a customer delivery tomorrow; confirm availability of the AC compressor now.",High
+L0005,referral,reseller,2018 Honda Jazz,AC compressor,36000,"Hello, could you confirm compatibility and a quotation for the AC compressor?",Medium
+L0112,phone,fleet,2018 Honda Jazz,door panel,18500,Our garage may order the door panel soon once the customer approves the job.,Medium
+L0010,phone,garage,2020 Hyundai i20,starter motor,24000,Our vehicle is off the road and we need the starter motor today. Please call back immediately.,High
+L0141,walk-in,garage,2021 Tata Nexon,clutch kit,63000,Ready to place an order if the clutch kit can be dispatched within 24 hours. Please respond by email.,High
+L0081,walk-in,individual,2018 Toyota Innova,headlight unit,6200,Please quote the headlight unit for a repair planned next week.,Medium
+L0143,walk-in,garage,2023 Mahindra XUV700,clutch kit,18500,Researching alternatives to the clutch kit; timing is undecided. Please respond by email.,Low
+L0001,whatsapp,reseller,2018 Toyota Innova,clutch kit,6200,Priority repair scheduled for tomorrow. Confirm this clutch kit as soon as possible.,High
+L0077,whatsapp,individual,2016 Ford EcoSport,side mirror,36000,This is just a preliminary inquiry about the side mirror; we might buy next quarter.,Low
+L0004,referral,fleet,2016 Ford EcoSport,alternator,63000,Potential requirement later this year for a alternator; no confirmed vehicle in workshop.,Low
+L0100,website,reseller,2021 Tata Nexon,radiator assembly,47000,I expect to buy a radiator assembly after confirming the final customer estimate.,Medium
+L0075,walk-in,fleet,2018 Honda Jazz,front bumper,24000,The existing front bumper has failed and caused downtime. Need a same-day quotation.,High
+L0080,referral,fleet,2018 Toyota Innova,front bumper,3500,We are shortlisting suppliers for a front bumper purchase later this month.,Medium
+L0101,walk-in,reseller,2023 Mahindra XUV700,brake pads,18500,"Collecting general information on the brake pads, not planning an order soon.",Low
+L0067,website,reseller,2019 Maruti Baleno,clutch kit,63000,Please send a general brochure with clutch kit options; only exploring.,Low
+L0126,referral,garage,2023 Mahindra XUV700,suspension strut,24000,"Curious about the suspension strut specifications, but no budget has been approved.",Low
+L0074,whatsapp,reseller,2023 Mahindra XUV700,radiator assembly,36000,I am checking the radiator assembly for next week; please share expected delivery.,Medium
+L0038,walk-in,reseller,2018 Honda Jazz,suspension strut,6200,The existing suspension strut has failed and caused downtime. Need a same-day quotation.,High
+L0044,phone,individual,2023 Mahindra XUV700,engine mount,63000,Please send a general brochure with engine mount options; only exploring.,Low
+L0050,walk-in,fleet,2021 Tata Nexon,radiator assembly,6200,Please quote the radiator assembly for a repair planned next week.,Medium
+L0055,whatsapp,individual,2019 Maruti Baleno,side mirror,9700,Ready to place an order if the side mirror can be dispatched within 24 hours.,High
+L0035,website,garage,2020 Hyundai i20,headlight unit,24000,Our driver is stranded. Need the headlight unit and an immediate callback. Please respond by email.,High
+L0136,website,fleet,2017 Honda City,front bumper,9700,Potential requirement later this year for a front bumper; no confirmed vehicle in workshop.,Low
+L0042,whatsapp,garage,2017 Honda City,front bumper,63000,Interested in ordering the front bumper; can you share price and normal shipping times?,Medium
+L0139,referral,individual,2023 Mahindra XUV700,alternator,9700,Please confirm your best rate on the alternator; planning to order in a few days.,Medium
+L0079,phone,reseller,2023 Mahindra XUV700,alternator,18500,"Hello, only researching approximate costs for the alternator for a future project.",Low
+L0115,referral,individual,2019 Maruti Baleno,starter motor,6200,Interested in ordering the starter motor; can you share price and normal shipping times?,Medium
+L0069,referral,fleet,2018 Toyota Innova,AC compressor,3500,This is urgent for a customer delivery tomorrow; confirm availability of the AC compressor now.,High
+L0062,referral,individual,2018 Honda Jazz,wheel bearing,9700,"Curious about the wheel bearing specifications, but no budget has been approved.",Low
+L0029,referral,fleet,2021 Tata Nexon,door panel,63000,We are not ready to purchase the door panel now; checking market availability.,Low
+L0089,referral,fleet,2021 Tata Nexon,engine mount,63000,Please quote the engine mount for a repair planned next week.,Medium
+L0009,whatsapp,fleet,2021 Tata Nexon,AC compressor,47000,Priority repair scheduled for tomorrow. Confirm this AC compressor as soon as possible.,High
+L0076,website,garage,2020 Hyundai Creta,wheel bearing,14000,Please quote the wheel bearing for a repair planned next week.,Medium
+L0054,phone,garage,2016 Ford EcoSport,alternator,14000,Only researching approximate costs for the alternator for a future project. Please respond by email.,Low
+L0053,phone,individual,2023 Mahindra XUV700,fuel pump,9700,We are shortlisting suppliers for a fuel pump purchase later this month.,Medium
+L0105,website,reseller,2018 Toyota Innova,headlight unit,80000,"Need the headlight unit right away, no time for a long comparison; please send a quote.",High
+L0048,whatsapp,garage,2020 Hyundai i20,brake pads,115000,This is just a preliminary inquiry about the brake pads; we might buy next quarter.,Low
+L0047,website,reseller,2020 Hyundai Creta,brake pads,80000,"Hello, can pay now. Is the brake pads in stock for express dispatch?",High
+L0011,whatsapp,individual,2022 Kia Seltos,AC compressor,9700,We are not ready to purchase the AC compressor now; checking market availability.,Low
+L0015,whatsapp,garage,2020 Hyundai Creta,front bumper,9700,Can you send a quote for the front bumper and explain the warranty?,Medium
+L0026,whatsapp,fleet,2020 Hyundai Creta,AC compressor,18500,Can you help identify the correct AC compressor variant? Purchase likely next week.,Medium
+L0007,walk-in,individual,2023 Mahindra XUV700,brake pads,80000,Interested in ordering the brake pads; can you share price and normal shipping times?,Medium
+L0040,website,garage,2016 Ford EcoSport,door panel,24000,I have approval to buy the door panel today. Please reserve stock and send payment details. Please respond by email.,High
+L0146,referral,garage,2020 Hyundai Creta,front bumper,36000,We are not ready to purchase the front bumper now; checking market availability.,Low
+L0150,whatsapp,reseller,2019 Maruti Baleno,engine mount,3500,"Hello, interested in ordering the engine mount; can you share price and normal shipping times?",Medium
+L0071,phone,reseller,2023 Mahindra XUV700,starter motor,80000,We are not ready to purchase the starter motor now; checking market availability.,Low
+L0140,whatsapp,garage,2021 Tata Nexon,front bumper,24000,I expect to buy a front bumper after confirming the final customer estimate.,Medium
+L0128,referral,garage,2017 Honda City,fuel pump,47000,The workshop cannot finish the repair without this fuel pump; need a firm quote urgently.,High
+L0064,referral,garage,2016 Ford EcoSport,side mirror,80000,"Need the side mirror right away, no time for a long comparison; please send a quote.",High
+L0065,whatsapp,garage,2016 Ford EcoSport,door panel,115000,I may need a door panel someday. Please share your catalog for reference.,Low
+L0104,walk-in,reseller,2023 Mahindra XUV700,suspension strut,18500,The existing suspension strut has failed and caused downtime. Need a same-day quotation.,High
+L0107,walk-in,reseller,2020 Hyundai i20,brake pads,24000,Need to finalize this brake pads order before close of business today.,High
+L0151,walk-in,garage,2016 Ford EcoSport,suspension strut,18500,Please confirm your best rate on the suspension strut; planning to order in a few days.,Medium
+L0145,website,fleet,2020 Hyundai i20,tail lamp,6200,Only researching approximate costs for the tail lamp for a future project. Please respond by email.,Low
+L0051,walk-in,fleet,2020 Hyundai i20,wheel bearing,63000,Can you send a quote for the wheel bearing and explain the warranty?,Medium
+L0093,website,fleet,2020 Hyundai i20,alternator,14000,Our driver is stranded. Need the alternator and an immediate callback.,High
+L0031,referral,reseller,2022 Kia Seltos,alternator,9700,This is just a preliminary inquiry about the alternator; we might buy next quarter.,Low
+L0063,website,reseller,2019 Maruti Baleno,brake pads,9700,"Curious about the brake pads specifications, but no budget has been approved.",Low
+L0098,website,reseller,2020 Hyundai Creta,tail lamp,3500,Potential requirement later this year for a tail lamp; no confirmed vehicle in workshop.,Low
+L0113,website,garage,2017 Honda City,radiator assembly,18500,Priority repair scheduled for tomorrow. Confirm this radiator assembly as soon as possible.,High
+L0120,walk-in,individual,2021 Tata Nexon,alternator,36000,Ready to place an order if the alternator can be dispatched within 24 hours.,High
+L0094,phone,individual,2018 Honda Jazz,suspension strut,115000,Ready to place an order if the suspension strut can be dispatched within 24 hours.,High
+L0092,whatsapp,individual,2023 Mahindra XUV700,radiator assembly,80000,Please confirm your best rate on the radiator assembly; planning to order in a few days.,Medium
+L0039,phone,garage,2022 Kia Seltos,wheel bearing,36000,Our vehicle is off the road and we need the wheel bearing today. Please call back immediately.,High
+L0073,website,garage,2016 Ford EcoSport,starter motor,80000,Researching alternatives to the starter motor; timing is undecided.,Low
+L0032,walk-in,reseller,2017 Honda City,headlight unit,6200,Please send a general brochure with headlight unit options; only exploring.,Low

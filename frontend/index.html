@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>PrioritiQ CRM — AI-Powered Spare Parts Lead Prioritization</title>
+    <meta name="title" content="PrioritiQ CRM — AI-Powered Spare Parts Lead Prioritization" />
+    <meta name="description" content="Automate sales inquiry triage, detect vehicle breakdown emergencies instantly, and empower commercial spare parts sales teams with AI-driven priority scoring and human-in-the-loop overrides." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Synchronous Theme Script: Prevents FOUC (Flash of Unstyled Theme) -->
+    <script>
+      (function() {
+        try {
+          var urlParams = new URLSearchParams(window.location.search);
+          var queryTheme = urlParams.get('theme');
+          var saved = (queryTheme === 'dark' || queryTheme === 'light') ? queryTheme : localStorage.getItem('prioritiq_theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://127.0.0.1:5173/" />
+    <meta property="og:title" content="PrioritiQ CRM — AI-Powered Spare Parts Lead Prioritization" />
+    <meta property="og:description" content="Automated commercial lead prioritization for automotive spare parts desks with machine learning urgency inference and human-in-the-loop sales overrides." />
+    <meta property="og:image" content="/og-image.svg" />
+
+    <!-- Twitter Cards -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="http://127.0.0.1:5173/" />
+    <meta property="twitter:title" content="PrioritiQ CRM — AI-Powered Spare Parts Lead Prioritization" />
+    <meta property="twitter:description" content="Automated commercial lead prioritization for automotive spare parts desks with machine learning urgency inference and human-in-the-loop sales overrides." />
+    <meta property="twitter:image" content="/og-image.svg" />
+
+    <!-- SoftwareApplication Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "PrioritiQ AI Lead Prioritization CRM",
+      "operatingSystem": "Web, Modern Browsers (Chrome, Firefox, Safari, Edge)",
+      "applicationCategory": "BusinessApplication",
+      "description": "Commercial automotive spare parts CRM featuring automated machine learning lead prioritization, 4-stage lifecycle qualification, manual priority overrides, bulk CSV ingestion, and real-time pipeline analytics.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Real-time text-based lead priority inference (High, Medium, Low)",
+        "Probability confidence scoring",
+        "Human-in-the-loop sales priority override with immutable AI audit logging",
+        "4-stage lead lifecycle funnel (New, Contacted, Qualified, Closed)",
+        "Compact CRM data table with search, status filtering, and server-side pagination",
+        "Bulk CSV ingestion engine with automated field validation",
+        "Real-time pipeline metrics and priority breakdown"
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-[#F3F6FA] dark:bg-[#0B132B] text-[#172438] dark:text-[#F8FAFC] antialiased font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

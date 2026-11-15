@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /features
+Allow: /how-it-works
+Allow: /privacy
+Allow: /thank-you
+Disallow: /app

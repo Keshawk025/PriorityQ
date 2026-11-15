@@ -1,0 +1,59 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="40" y="40" width="1120" height="550" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Subtle Grid Accent -->
+  <line x1="40" y1="120" x2="1160" y2="120" stroke="#334155" stroke-width="1"/>
+  <line x1="40" y1="510" x2="1160" y2="510" stroke="#334155" stroke-width="1"/>
+
+  <!-- Logo Mark & Branding -->
+  <rect x="80" y="66" width="36" height="36" rx="6" fill="#2563eb"/>
+  <text x="98" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">P</text>
+  <text x="130" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="600" fill="#f8fafc">PrioritiQ CRM</text>
+  <text x="270" y="91" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#94a3b8">| Commercial Automotive Spare Parts</text>
+
+  <!-- Tag Pill -->
+  <rect x="80" y="160" width="280" height="32" rx="16" fill="#0f172a" stroke="#2563eb" stroke-width="1.5"/>
+  <circle cx="98" cy="176" r="4" fill="#38bdf8"/>
+  <text x="112" y="181" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#93c5fd">Enterprise Sales Triage System</text>
+
+  <!-- Main Headline -->
+  <text x="80" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="bold" fill="#f8fafc">
+    AI-Powered Lead Prioritization
+  </text>
+  <text x="80" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="bold" fill="#38bdf8">
+    for Commercial Spare Parts
+  </text>
+
+  <!-- Subheadline -->
+  <text x="80" y="365" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="normal" fill="#94a3b8">
+    Real-time urgency classification • Human-in-the-loop sales overrides • 4-stage lifecycle management
+  </text>
+
+  <!-- Priority Badges Mockup -->
+  <g transform="translate(80, 410)">
+    <!-- High Priority -->
+    <rect x="0" y="0" width="130" height="40" rx="6" fill="#450a0a" stroke="#dc2626" stroke-width="1.5"/>
+    <circle cx="20" cy="20" r="5" fill="#ef4444"/>
+    <text x="35" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#fca5a5">High (P1)</text>
+
+    <!-- Medium Priority -->
+    <rect x="150" y="0" width="150" height="40" rx="6" fill="#451a03" stroke="#d97706" stroke-width="1.5"/>
+    <circle cx="170" cy="20" r="5" fill="#f59e0b"/>
+    <text x="185" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#fcd34d">Medium (P2)</text>
+
+    <!-- Low Priority -->
+    <rect x="320" y="0" width="130" height="40" rx="6" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
+    <circle cx="340" cy="20" r="5" fill="#10b981"/>
+    <text x="355" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="#6ee7b7">Low (P3)</text>
+  </g>
+
+  <!-- Footer Info -->
+  <text x="80" y="555" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="#64748b">
+    Fully functional local evaluation environment • Automated machine learning scoring &amp; audit integrity
+  </text>
+  <text x="1120" y="555" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="end">
+    /app • Try It Now
+  </text>
+</svg>
