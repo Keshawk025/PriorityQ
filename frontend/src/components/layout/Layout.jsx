@@ -9,7 +9,7 @@ export default function Layout({
   onNavigateHome,
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-[#F3F6FA] dark:bg-[#0B132B] font-sans antialiased text-[#172438] dark:text-[#F8FAFC] w-full transition-colors duration-150">
+    <div className="flex min-h-screen flex-col bg-bg text-text font-sans antialiased w-full transition-colors duration-150">
       {/* Horizontal Top Navigation Bar */}
       <Header
         activeTab={activeTab}

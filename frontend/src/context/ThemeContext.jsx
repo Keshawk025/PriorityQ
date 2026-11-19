@@ -46,6 +46,13 @@ export function ThemeProvider({ children }) {
       root.style.colorScheme = 'light';
     }
 
+    try {
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', newTheme === 'dark' ? '#000000' : '#ffffff');
+      }
+    } catch {}
+
     if (enableTransition) {
       window.setTimeout(() => {
         root.classList.remove('theme-transition');

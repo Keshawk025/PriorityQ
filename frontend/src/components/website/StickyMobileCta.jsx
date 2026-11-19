@@ -4,17 +4,17 @@ export default function StickyMobileCta({ onLaunchMvp }) {
   return (
     <aside
       aria-label="Mobile Quick Action"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-[#080D1D]/90 border-t border-[#DCE4EE] dark:border-[#26354D] px-4 py-2.5 shadow-lg backdrop-blur-md transition-colors duration-150"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface/95 border-t border-border px-4 py-2.5 shadow-lg backdrop-blur-md transition-colors duration-150"
     >
       <div className="flex items-center justify-between gap-3">
         <div className="text-left leading-tight">
-          <p className="text-xs font-bold text-[#173B67] dark:text-[#F8FAFC]">Commercial Parts CRM</p>
-          <p className="text-[10px] text-[#64748B] dark:text-[#94A3B8] font-medium">Live AI Priority Triage</p>
+          <p className="text-xs font-bold text-text">Commercial Parts CRM</p>
+          <p className="text-[10px] text-text-muted font-medium">Live AI Priority Triage</p>
         </div>
         <button
           type="button"
           onClick={onLaunchMvp}
-          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded bg-[#3678D4] hover:bg-[#2A62B6] text-white px-5 py-2 text-xs font-bold shadow-btn btn-interactive focus-ring"
+          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-md bg-accent text-accent-contrast hover:bg-accent-hover px-5 py-2 text-xs font-bold shadow-xs focus-ring transition-colors"
           aria-label="Launch CRM Application (Try It Now)"
         >
           <span>Try It Now</span>

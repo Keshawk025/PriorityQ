@@ -60,9 +60,9 @@ export default function HowItWorksPage({ onNavigate }) {
   const priorityDefinitions = [
     {
       level: 'High Priority (P1)',
-      borderClass: 'border-l-4 border-l-[#DC2626]',
-      badgeClass: 'text-[#DC2626] dark:text-[#F87171] bg-[#FEF2F2] dark:bg-[#7F1D1D]/30 border-[#FCA5A5] dark:border-[#DC2626]/50 font-bold',
-      dotClass: 'bg-[#DC2626]',
+      dotClass: 'bg-red-600 dark:bg-red-500',
+      borderClass: 'border-l-4 border-l-red-500',
+      badgeClass: 'text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-950/40 border-red-200 dark:border-red-800/60 font-bold',
       definition:
         'Immediate operational downtime. A commercial vehicle or fleet truck is immobilized on a route, carrying time-sensitive cargo, or causing severe commercial disruption.',
       sampleParts: 'Brake valves, booster assemblies, steering linkages, clutch release bearings, fuel pump units.',
@@ -73,9 +73,9 @@ export default function HowItWorksPage({ onNavigate }) {
     },
     {
       level: 'Medium Priority (P2)',
-      borderClass: 'border-l-4 border-l-[#D97706]',
-      badgeClass: 'text-[#D97706] dark:text-[#FBBF24] bg-[#FFFBEB] dark:bg-[#78350F]/30 border-[#FCD34D] dark:border-[#D97706]/50 font-bold',
-      dotClass: 'bg-[#D97706]',
+      dotClass: 'bg-amber-500',
+      borderClass: 'border-l-4 border-l-amber-500',
+      badgeClass: 'text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/60 font-bold',
       definition:
         'Predictable commercial maintenance. A vehicle is scheduled for fleet inspection, weekend workshop overhaul, or preventative component replacement within several days.',
       sampleParts: 'Clutch plates, suspension bushes, radiator hoses, standard brake shoe sets, water pumps.',
@@ -86,9 +86,9 @@ export default function HowItWorksPage({ onNavigate }) {
     },
     {
       level: 'Low Priority (P3)',
-      borderClass: 'border-l-4 border-l-[#059669]',
-      badgeClass: 'text-[#059669] dark:text-[#34D399] bg-[#ECFDF5] dark:bg-[#064E3B]/30 border-[#6EE7B7] dark:border-[#059669]/50 font-bold',
-      dotClass: 'bg-[#059669]',
+      dotClass: 'bg-emerald-500',
+      borderClass: 'border-l-4 border-l-emerald-500',
+      badgeClass: 'text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/60 font-bold',
       definition:
         'General commercial inquiry. Exploratory requests for price estimations, periodic inventory restock comparisons, or standard catalog queries with no active downtime.',
       sampleParts: 'Standard oil filters, gasket packs, consumable clips, bulk accessory hardware.',
@@ -100,7 +100,7 @@ export default function HowItWorksPage({ onNavigate }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F3F6FA] dark:bg-[#0B132B] text-[#172438] dark:text-[#F8FAFC] font-sans antialiased pb-16 md:pb-0">
+    <div className="min-h-screen bg-bg text-text font-sans antialiased pb-16 md:pb-0 transition-colors duration-150">
       <Navbar currentRoute="/how-it-works" onNavigate={onNavigate} />
 
       <main className="py-10 sm:py-14 lg:py-16">
@@ -112,21 +112,21 @@ export default function HowItWorksPage({ onNavigate }) {
           />
 
           {/* Page Header */}
-          <div className="max-w-3xl pb-8 border-b border-[#DCE4EE] dark:border-[#26354D]">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
+          <div className="max-w-3xl pb-8 border-b border-border">
+            <span className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono">
               Technical &amp; Operational Architecture
             </span>
-            <h1 className="mt-1 text-3xl sm:text-4xl font-bold tracking-tight text-[#173B67] dark:text-white">
+            <h1 className="mt-1 text-3xl sm:text-4xl font-bold tracking-tight text-text">
               How the Prioritization Workflow Operates
             </h1>
-            <p className="mt-2 text-sm text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+            <p className="mt-2 text-sm text-text-secondary leading-relaxed">
               PrioritiQ bridges machine learning inference and frontline sales decision-making. Below is the real architectural workflow implemented in the software, from inquiry text tokenization to supervised sales override controls.
             </p>
           </div>
 
           {/* Workflow Sequence */}
           <section aria-labelledby="workflow-heading" className="mt-10">
-            <h2 id="workflow-heading" className="text-lg font-bold text-[#173B67] dark:text-white mb-6">
+            <h2 id="workflow-heading" className="text-lg font-bold text-text mb-6">
               The End-to-End Triage Sequence
             </h2>
 
@@ -134,24 +134,24 @@ export default function HowItWorksPage({ onNavigate }) {
               {workflowSteps.map((step) => (
                 <div
                   key={step.step}
-                  className="rounded-lg border border-[#DCE4EE] dark:border-[#26354D] bg-white dark:bg-[#162032] p-5 sm:p-6 shadow-card hover:shadow-card-hover transition-shadow flex flex-col sm:flex-row sm:items-start gap-4"
+                  className="rounded-lg border border-border bg-surface p-5 sm:p-6 shadow-card hover:border-border-strong transition-all duration-150 flex flex-col sm:flex-row sm:items-start gap-4"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-[#173B67] dark:bg-[#1E293B] border border-transparent dark:border-[#26354D] text-white font-mono font-bold text-sm">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-surface-raised border border-border text-text font-mono font-bold text-sm">
                     {step.step}
                   </div>
 
                   <div className="flex-1 space-y-1.5">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                      <h3 className="text-sm font-bold text-[#172438] dark:text-[#F8FAFC]">{step.title}</h3>
-                      <span className="text-[11px] font-semibold text-[#3678D4] dark:text-[#60A5FA] bg-[#E9EFF8] dark:bg-[#1E293B] border border-[#3678D4]/20 dark:border-[#3678D4]/40 rounded px-2.5 py-0.5 self-start sm:self-auto">
+                      <h3 className="text-sm font-bold text-text">{step.title}</h3>
+                      <span className="text-[11px] font-mono text-text-muted bg-surface-raised border border-border rounded px-2.5 py-0.5 self-start sm:self-auto">
                         {step.subtitle}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                       {step.description}
                     </p>
-                    <p className="text-[11px] text-[#64748B] dark:text-[#94A3B8] font-mono bg-[#F3F6FA] dark:bg-[#0F172A] p-2.5 rounded border border-[#DCE4EE] dark:border-[#26354D] mt-2.5">
-                      <span className="font-semibold text-[#173B67] dark:text-[#93C5FD]">Implementation Note:</span> {step.technicalNote}
+                    <p className="text-[11px] text-text-secondary font-mono bg-surface-raised p-2.5 rounded-md border border-border mt-2.5">
+                      <span className="font-semibold text-text">Implementation Note:</span> {step.technicalNote}
                     </p>
                   </div>
                 </div>
@@ -160,15 +160,15 @@ export default function HowItWorksPage({ onNavigate }) {
           </section>
 
           {/* Priority Class Definitions */}
-          <section aria-labelledby="classes-heading" className="mt-14 pt-10 border-t border-[#DCE4EE] dark:border-[#26354D]">
+          <section aria-labelledby="classes-heading" className="mt-14 pt-10 border-t border-border">
             <div className="max-w-2xl mb-6">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono">
                 Classification Framework
               </span>
-              <h2 id="classes-heading" className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-[#173B67] dark:text-white">
+              <h2 id="classes-heading" className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-text">
                 Understanding High, Medium, and Low Priority Tiers
               </h2>
-              <p className="mt-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+              <p className="mt-1.5 text-xs text-text-secondary leading-relaxed">
                 PrioritiQ evaluates both linguistic indicators and order context to establish three distinct priority tiers, each with dedicated sales response protocols.
               </p>
             </div>
@@ -177,42 +177,42 @@ export default function HowItWorksPage({ onNavigate }) {
               {priorityDefinitions.map((tier) => (
                 <article
                   key={tier.level}
-                  className={`rounded-lg border border-[#DCE4EE] dark:border-[#26354D] bg-white dark:bg-[#162032] p-5 sm:p-6 shadow-card hover:shadow-card-hover transition-shadow ${tier.borderClass}`}
+                  className={`rounded-lg border border-border bg-surface p-5 sm:p-6 shadow-card hover:border-border-strong transition-all duration-150 ${tier.borderClass || ''}`}
                 >
-                  <div className="flex items-center justify-between pb-3 border-b border-[#DCE4EE] dark:border-[#26354D]">
+                  <div className="flex items-center justify-between pb-3 border-b border-border">
                     <div className="flex items-center gap-2">
                       <span className={`h-2.5 w-2.5 rounded-full ${tier.dotClass}`}></span>
-                      <h3 className="text-sm font-bold text-[#172438] dark:text-[#F8FAFC]">{tier.level}</h3>
+                      <h3 className="text-sm font-bold text-text">{tier.level}</h3>
                     </div>
-                    <span className={`rounded border px-2.5 py-0.5 text-[11px] font-bold ${tier.badgeClass}`}>
-                      {tier.level.split(' ')[0]} Priority
+                    <span className={`inline-flex items-center gap-1 rounded px-2.5 py-0.5 text-[11px] ${tier.badgeClass}`}>
+                      <span>{tier.level.split(' ')[0]}</span>
                     </span>
                   </div>
 
-                  <p className="mt-3 text-xs sm:text-sm text-[#172438] dark:text-[#E2E8F0] leading-relaxed">
-                    <strong>Operational Trigger:</strong> {tier.definition}
+                  <p className="mt-3 text-xs sm:text-sm text-text-secondary leading-relaxed">
+                    <strong className="text-text">Operational Trigger:</strong> {tier.definition}
                   </p>
 
-                  <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs bg-[#F3F6FA] dark:bg-[#0F172A] p-3 rounded-md border border-[#DCE4EE] dark:border-[#26354D]">
+                  <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs bg-surface-raised p-3 rounded-md border border-border">
                     <div>
-                      <span className="text-[10px] font-semibold uppercase text-[#64748B] dark:text-[#94A3B8] block mb-0.5">
+                      <span className="text-[10px] font-mono font-semibold uppercase text-text-muted block mb-0.5">
                         Typical Component Requests
                       </span>
-                      <p className="text-[#172438] dark:text-[#E2E8F0]">{tier.sampleParts}</p>
+                      <p className="text-text">{tier.sampleParts}</p>
                     </div>
                     <div>
-                      <span className="text-[10px] font-semibold uppercase text-[#64748B] dark:text-[#94A3B8] block mb-0.5">
+                      <span className="text-[10px] font-mono font-semibold uppercase text-text-muted block mb-0.5">
                         Recommended Sales Protocol
                       </span>
-                      <p className="text-[#172438] dark:text-[#E2E8F0]">{tier.recommendedAction}</p>
+                      <p className="text-text">{tier.recommendedAction}</p>
                     </div>
                   </div>
 
-                  <div className="mt-3 text-xs bg-white dark:bg-[#1E293B] p-2.5 rounded-md border border-[#DCE4EE] dark:border-[#26354D]">
-                    <span className="text-[10px] font-semibold uppercase text-[#64748B] dark:text-[#94A3B8] block mb-0.5">
+                  <div className="mt-3 text-xs bg-surface p-2.5 rounded-md border border-border">
+                    <span className="text-[10px] font-mono font-semibold uppercase text-text-muted block mb-0.5">
                       Illustrative Inquiry Statement
                     </span>
-                    <p className="italic text-[#64748B] dark:text-[#94A3B8]">{tier.sampleInquiry}</p>
+                    <p className="italic text-text-secondary">{tier.sampleInquiry}</p>
                   </div>
                 </article>
               ))}
@@ -220,49 +220,49 @@ export default function HowItWorksPage({ onNavigate }) {
           </section>
 
           {/* Illustrative Architecture Blueprint */}
-          <section aria-labelledby="blueprint-heading" className="mt-14 pt-10 border-t border-[#DCE4EE] dark:border-[#26354D]">
+          <section aria-labelledby="blueprint-heading" className="mt-14 pt-10 border-t border-border">
             <div className="max-w-2xl mb-6">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono">
                 System Transparency
               </span>
-              <h2 id="blueprint-heading" className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-[#173B67] dark:text-white">
+              <h2 id="blueprint-heading" className="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-text">
                 Product Architecture Blueprint
               </h2>
-              <p className="mt-1.5 text-xs text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+              <p className="mt-1.5 text-xs text-text-secondary leading-relaxed">
                 This workflow reflects the actual components running in this environment. No fabricated customer case studies, simulated metrics, or artificial accuracy statistics are presented.
               </p>
             </div>
 
-            <div className="rounded-lg border border-[#DCE4EE] dark:border-[#26354D] bg-white dark:bg-[#162032] p-6 shadow-card text-xs space-y-4">
+            <div className="rounded-lg border border-border bg-surface p-6 shadow-card text-xs space-y-4 hover:border-border-strong transition-all duration-150">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="rounded-md border border-[#DCE4EE] dark:border-[#26354D] bg-[#F3F6FA] dark:bg-[#0F172A] p-3.5 space-y-1">
-                  <span className="font-bold text-[#173B67] dark:text-[#93C5FD] block text-xs">FastAPI Backend Service</span>
-                  <p className="text-[#64748B] dark:text-[#94A3B8] text-[11px] leading-relaxed">
+                <div className="rounded-md border border-border bg-surface-raised p-3.5 space-y-1">
+                  <span className="font-bold text-text block text-xs">FastAPI Backend Service</span>
+                  <p className="text-text-secondary text-[11px] leading-relaxed">
                     Validates 7-field Pydantic schema, handles duplicate prevention, and serves paginated queries.
                   </p>
                 </div>
-                <div className="rounded-md border border-[#DCE4EE] dark:border-[#26354D] bg-[#F3F6FA] dark:bg-[#0F172A] p-3.5 space-y-1">
-                  <span className="font-bold text-[#173B67] dark:text-[#93C5FD] block text-xs">Scikit-Learn ML Pipeline</span>
-                  <p className="text-[#64748B] dark:text-[#94A3B8] text-[11px] leading-relaxed">
+                <div className="rounded-md border border-border bg-surface-raised p-3.5 space-y-1">
+                  <span className="font-bold text-text block text-xs">Scikit-Learn ML Pipeline</span>
+                  <p className="text-text-secondary text-[11px] leading-relaxed">
                     Transforms text via TF-IDF Vectorizer and predicts class probabilities via Logistic Regression.
                   </p>
                 </div>
-                <div className="rounded-md border border-[#DCE4EE] dark:border-[#26354D] bg-[#F3F6FA] dark:bg-[#0F172A] p-3.5 space-y-1">
-                  <span className="font-bold text-[#173B67] dark:text-[#93C5FD] block text-xs">React 18 &amp; Tailwind UI</span>
-                  <p className="text-[#64748B] dark:text-[#94A3B8] text-[11px] leading-relaxed">
+                <div className="rounded-md border border-border bg-surface-raised p-3.5 space-y-1">
+                  <span className="font-bold text-text block text-xs">React 18 &amp; Tailwind UI</span>
+                  <p className="text-text-secondary text-[11px] leading-relaxed">
                     Provides high-density lead queue tables, manual override controls, and dynamic CSV batch ingestion.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-3 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#DCE4EE] dark:border-[#26354D]">
-                <span className="text-[#64748B] dark:text-[#94A3B8] text-xs">
+              <div className="pt-3 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border">
+                <span className="text-text-secondary text-xs">
                   Ready to test the live ML inference and override engine?
                 </span>
                 <button
                   type="button"
                   onClick={handleLaunch}
-                  className="inline-flex items-center gap-1.5 rounded-md bg-[#3678D4] hover:bg-[#2A62B6] text-white px-4 py-2 text-xs font-semibold shadow-btn btn-interactive transition-all"
+                  className="inline-flex items-center gap-1.5 rounded-md bg-accent text-accent-contrast hover:bg-accent-hover px-4 py-2 text-xs font-bold shadow-xs focus-ring transition-colors"
                 >
                   <span>Try It Now (Launch CRM)</span>
                   <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

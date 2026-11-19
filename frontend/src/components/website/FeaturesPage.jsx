@@ -33,7 +33,7 @@ export default function FeaturesPage({ onNavigate }) {
         'Seven verified fields: Lead ID, Source Channel, Customer Type, Vehicle Model, Part Needed, Order Value (INR), and Customer Message',
         'Real-time non-whitespace string verification and integer order value validation (ge=0)',
         'Instant duplicate Lead ID prevention (HTTP 409 conflict detection)',
-        'Immediate display of inferred priority and confidence upon creation',
+        'Immediate display of inferred priority upon creation',
       ],
     },
     {
@@ -77,13 +77,13 @@ export default function FeaturesPage({ onNavigate }) {
     },
     {
       id: 'csv-import',
-      title: 'Bulk CSV Ingestion & Automated Scoring',
+      title: 'Bulk & Single CSV Ingestion with Diagnostics',
       badge: 'Batch Processing',
       description:
-        'Enables high-volume ingestion of historical or third-party lead lists via standard CSV files, automatically validating schema requirements and scoring priorities per record.',
+        'Enables high-volume ingestion of historical or third-party lead lists via standard CSV files, automatically validating schema requirements, showing row-level diagnostics, and scoring priorities.',
       details: [
-        'RFC 4180 compliant CSV parser supporting files up to 10MB',
-        'Automated header and field validation with per-row error diagnostics',
+        'Single and multi-file bulk CSV upload flows with native file picker support',
+        'Automated header alias mapping matching standard and client CSV schemas',
         'Partial acceptance handling: valid rows are ingested and scored while invalid rows are isolated',
         'Tabular rejected rows report detailing exact row numbers and failure reasons',
       ],
@@ -104,7 +104,7 @@ export default function FeaturesPage({ onNavigate }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F3F6FA] dark:bg-[#0B132B] text-[#172438] dark:text-[#F8FAFC] font-sans antialiased pb-16 md:pb-0">
+    <div className="min-h-screen bg-bg text-text font-sans antialiased pb-16 md:pb-0 transition-colors duration-150">
       <Navbar currentRoute="/features" onNavigate={onNavigate} />
 
       <main className="py-10 sm:py-14 lg:py-16">
@@ -116,14 +116,14 @@ export default function FeaturesPage({ onNavigate }) {
           />
 
           {/* Page Header */}
-          <div className="max-w-3xl pb-8 border-b border-[#DCE4EE] dark:border-[#26354D]">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B] dark:text-[#94A3B8]">
+          <div className="max-w-3xl pb-8 border-b border-border">
+            <span className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono">
               System Specification
             </span>
-            <h1 className="mt-1 text-3xl sm:text-4xl font-bold tracking-tight text-[#173B67] dark:text-white">
+            <h1 className="mt-1 text-3xl sm:text-4xl font-bold tracking-tight text-text">
               Features &amp; Functional Capabilities
             </h1>
-            <p className="mt-2 text-sm text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+            <p className="mt-2 text-sm text-text-secondary leading-relaxed">
               Every capability detailed below is fully implemented and operational in the running PrioritiQ application. No speculative or unverified features are listed.
             </p>
           </div>
@@ -134,34 +134,34 @@ export default function FeaturesPage({ onNavigate }) {
               <article
                 key={feature.id}
                 id={feature.id}
-                className="rounded-lg border border-[#DCE4EE] dark:border-[#26354D] bg-white dark:bg-[#162032] p-6 sm:p-7 shadow-card hover:shadow-card-hover transition-shadow"
+                className="rounded-lg border border-border bg-surface p-6 sm:p-7 shadow-card hover:border-border-strong transition-all duration-150"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-[#DCE4EE] dark:border-[#26354D]">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-border">
                   <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded bg-[#E9EFF8] dark:bg-[#1E293B] text-[#173B67] dark:text-[#93C5FD] text-xs font-bold font-mono border border-[#DCE4EE] dark:border-[#26354D]">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-md bg-surface-raised text-text text-xs font-bold font-mono border border-border">
                       0{idx + 1}
                     </span>
-                    <h2 className="text-base sm:text-lg font-bold text-[#173B67] dark:text-white">
+                    <h2 className="text-base sm:text-lg font-bold text-text">
                       {feature.title}
                     </h2>
                   </div>
-                  <span className="self-start sm:self-auto rounded-md border border-[#DCE4EE] dark:border-[#26354D] bg-[#F3F6FA] dark:bg-[#0F172A] px-2.5 py-0.5 text-[11px] font-medium text-[#64748B] dark:text-[#94A3B8]">
+                  <span className="self-start sm:self-auto rounded-md border border-border bg-surface-raised px-2.5 py-0.5 text-[11px] font-mono text-text-muted">
                     {feature.badge}
                   </span>
                 </div>
 
-                <p className="mt-3 text-xs sm:text-sm text-[#64748B] dark:text-[#94A3B8] leading-relaxed">
+                <p className="mt-3 text-xs sm:text-sm text-text-secondary leading-relaxed">
                   {feature.description}
                 </p>
 
-                <div className="mt-4 pt-3 border-t border-[#DCE4EE] dark:border-[#26354D]">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#173B67] dark:text-[#93C5FD] mb-2">
+                <div className="mt-4 pt-3 border-t border-border">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-text mb-2 font-mono">
                     Key Specifications &amp; Safeguards:
                   </h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#172438] dark:text-[#E2E8F0]">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-text-secondary">
                     {feature.details.map((detail, dIdx) => (
                       <li key={dIdx} className="flex items-start gap-1.5">
-                        <span className="text-[#3678D4] dark:text-[#60A5FA] font-bold shrink-0">•</span>
+                        <span className="text-text font-bold shrink-0">•</span>
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -172,17 +172,17 @@ export default function FeaturesPage({ onNavigate }) {
           </div>
 
           {/* Call to Action Banner */}
-          <div className="mt-12 rounded-lg border border-[#DCE4EE] dark:border-[#26354D] bg-[#173B67] dark:bg-[#1E293B] text-white p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6 shadow-card">
+          <div className="mt-12 rounded-lg border border-border bg-surface text-text p-8 text-center sm:text-left sm:flex sm:items-center sm:justify-between gap-6 shadow-card hover:border-border-strong transition-all duration-150">
             <div>
-              <h2 className="text-xl font-bold text-white">Test These Capabilities in the Live CRM</h2>
-              <p className="mt-1 text-xs text-[#E9EFF8]/80 dark:text-[#94A3B8] leading-relaxed">
+              <h2 className="text-xl font-bold text-text">Test These Capabilities in the Live CRM</h2>
+              <p className="mt-1 text-xs text-text-secondary leading-relaxed">
                 Launch the running application to evaluate lead creation, priority scoring, search, overrides, and CSV ingestion directly.
               </p>
             </div>
             <button
               type="button"
               onClick={handleLaunch}
-              className="mt-4 sm:mt-0 shrink-0 inline-flex items-center gap-1.5 rounded-md bg-[#3678D4] hover:bg-[#2A62B6] text-white px-5 py-2.5 text-xs font-semibold shadow-btn btn-interactive transition-all"
+              className="mt-4 sm:mt-0 shrink-0 inline-flex items-center gap-1.5 rounded-md bg-accent text-accent-contrast hover:bg-accent-hover px-5 py-2.5 text-xs font-bold shadow-xs focus-ring transition-colors"
             >
               <span>Try It Now (Launch CRM)</span>
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

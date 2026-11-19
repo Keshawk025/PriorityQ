@@ -1,5 +1,8 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="6" fill="#0f172a"/>
-  <rect x="2" y="2" width="28" height="28" rx="4" fill="#1e293b"/>
-  <text x="16" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="#38bdf8" text-anchor="middle">P</text>
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="44" height="44" rx="10" fill="#0A0A0A" stroke="#262626" stroke-width="1.5"/>
+  <path d="M12 10C12 9.44772 12.4477 9 13 9H24C28.4183 9 32 12.5817 32 17C32 21.4183 28.4183 25 24 25H18V34C18 34.5523 17.5523 35 17 35H13C12.4477 35 12 34.5523 12 34V10Z" fill="#FFFFFF"/>
+  <path d="M18 14.5H23.5C24.8807 14.5 26 15.6193 26 17C26 18.3807 24.8807 19.5 23.5 19.5H18V14.5Z" fill="#0A0A0A"/>
+  <circle cx="22" cy="30.5" r="2.6" fill="#EF4444"/>
+  <circle cx="28" cy="30.5" r="2.6" fill="#F59E0B"/>
+  <circle cx="34" cy="30.5" r="2.6" fill="#10B981"/>
 </svg>

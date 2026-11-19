@@ -145,16 +145,36 @@ export default function LeadCreateForm({ onLeadCreated }) {
     setFieldErrors({});
   };
 
-  const getPriorityBadgeClass = (priority) => {
+  // Priority indicators: Red (High), Yellow/Amber (Medium), Green (Low)
+  const renderPriorityBadge = (priority) => {
     switch (priority) {
       case 'High':
-        return 'text-[#DC2626] dark:text-[#F87171] bg-[#FEF2F2] dark:bg-[#7F1D1D]/30 border-[#FCA5A5] dark:border-[#DC2626]/50 font-bold';
+        return (
+          <span className="inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-xs font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-red-600 dark:bg-red-500" aria-hidden="true"></span>
+            <span>High</span>
+          </span>
+        );
       case 'Medium':
-        return 'text-[#D97706] dark:text-[#FBBF24] bg-[#FFFBEB] dark:bg-[#78350F]/30 border-[#FCD34D] dark:border-[#D97706]/50 font-bold';
+        return (
+          <span className="inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden="true"></span>
+            <span>Medium</span>
+          </span>
+        );
       case 'Low':
-        return 'text-[#059669] dark:text-[#34D399] bg-[#ECFDF5] dark:bg-[#064E3B]/30 border-[#6EE7B7] dark:border-[#059669]/50 font-bold';
+        return (
+          <span className="inline-flex items-center gap-1.5 rounded px-2 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+            <span>Low</span>
+          </span>
+        );
       default:
-        return 'text-[#172438] dark:text-[#F8FAFC] bg-[#F3F6FA] dark:bg-[#162032] border-[#DCE4EE] dark:border-[#26354D] font-bold';
+        return (
+          <span className="inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium border border-border text-text-muted bg-surface-raised">
+            <span>{priority || '—'}</span>
+          </span>
+        );
     }
   };
 
@@ -168,70 +188,64 @@ export default function LeadCreateForm({ onLeadCreated }) {
   };
 
   return (
-    <div className="rounded-md border border-[#DCE4EE] dark:border-[#26354D] bg-white dark:bg-[#162032] p-4 sm:p-5 shadow-card dark:shadow-card-dark hover:shadow-card-hover dark:hover:shadow-card-dark-hover transition-all duration-150">
+    <div className="rounded-lg border border-border bg-surface p-4 sm:p-5 shadow-card hover:border-border-strong transition-all duration-150">
       {/* Header */}
-      <div className="border-b border-[#DCE4EE] dark:border-[#26354D] pb-3">
-        <h2 className="text-sm font-bold text-[#173B67] dark:text-[#F8FAFC]">Create New Lead</h2>
-        <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">
+      <div className="border-b border-border pb-3">
+        <h2 className="text-sm font-bold text-text tracking-tight">Create New Lead</h2>
+        <p className="text-xs text-text-muted">
           Submit customer inquiry for automated priority classification
         </p>
       </div>
 
-      {/* Success AI Prediction Banner */}
+      {/* Success AI Prediction Banner - Pure monochrome with check icon */}
       {successLead && (
-        <div className="mt-4 rounded border border-emerald-300 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/30 p-3">
+        <div className="mt-4 rounded-md border border-border-strong bg-surface-raised p-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded bg-emerald-600 text-white">
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
+              <span className="flex h-5 w-5 items-center justify-center rounded bg-accent text-accent-contrast font-bold text-xs">
+                ✓
               </span>
               <div>
-                <h4 className="text-xs font-semibold text-emerald-900 dark:text-emerald-300">Lead Created Successfully</h4>
-                <p className="text-[11px] text-emerald-700 dark:text-emerald-400">Priority scored and saved to pipeline</p>
+                <h4 className="text-xs font-semibold text-text">Lead Created Successfully</h4>
+                <p className="text-[11px] text-text-secondary">Priority scored and saved to pipeline</p>
               </div>
             </div>
             <button
               type="button"
               onClick={handleReset}
-              className="text-xs font-medium text-emerald-800 dark:text-emerald-300 hover:text-emerald-950 dark:hover:text-emerald-100 underline"
+              className="text-xs font-medium text-text underline hover:text-text-secondary"
             >
               Create Another
             </button>
           </div>
 
           {/* Result Card */}
-          <div className="mt-2.5 grid grid-cols-2 gap-2.5 rounded border border-emerald-200 dark:border-emerald-800/40 bg-white dark:bg-[#0F172A] p-2.5 text-xs sm:grid-cols-5">
+          <div className="mt-2.5 grid grid-cols-2 gap-2.5 rounded-md border border-border bg-surface p-2.5 text-xs sm:grid-cols-5">
             <div>
-              <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Lead ID</span>
-              <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">{successLead.lead_id}</span>
+              <span className="text-text-muted block text-[10px] uppercase font-mono">Lead ID</span>
+              <span className="font-mono font-semibold text-text">{successLead.lead_id}</span>
             </div>
             <div>
-              <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Priority</span>
-              <span
-                className={`inline-block mt-0.5 rounded px-2 py-0.5 font-semibold text-[11px] border ${getPriorityBadgeClass(
-                  successLead.effective_priority
-                )}`}
-              >
-                {successLead.effective_priority}
-              </span>
+              <span className="text-text-muted block text-[10px] uppercase font-mono">Priority</span>
+              <div className="mt-0.5">
+                {renderPriorityBadge(successLead.effective_priority)}
+              </div>
             </div>
             <div>
-              <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Status</span>
-              <span className="inline-block mt-0.5 font-medium text-slate-800 dark:text-slate-200">
+              <span className="text-text-muted block text-[10px] uppercase font-mono">Status</span>
+              <span className="inline-block mt-0.5 font-medium text-text">
                 {successLead.status}
               </span>
             </div>
             <div>
-              <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Order Value</span>
-              <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
+              <span className="text-text-muted block text-[10px] uppercase font-mono">Order Value</span>
+              <span className="font-mono font-medium text-text">
                 {formatCurrency(successLead.estimated_order_value_inr)}
               </span>
             </div>
             <div>
-              <span className="text-slate-500 dark:text-slate-400 block text-[10px] uppercase font-mono">Added On</span>
-              <span className="font-mono font-medium text-slate-900 dark:text-slate-100 text-[11px]">
+              <span className="text-text-muted block text-[10px] uppercase font-mono">Added On</span>
+              <span className="font-mono font-medium text-text text-[11px]">
                 {formatISTDateTime(successLead.created_at)}
               </span>
             </div>
@@ -239,25 +253,14 @@ export default function LeadCreateForm({ onLeadCreated }) {
         </div>
       )}
 
-      {/* Global API Error Alert */}
+      {/* Global API Error Alert - Monochrome with icon */}
       {apiError && (
         <div
-          className={`mt-4 rounded border p-3 text-xs ${
-            apiError.type === 'duplicate'
-              ? 'border-[#FCD34D] dark:border-amber-800 bg-[#FFFBEB] dark:bg-amber-950/40 text-[#D97706] dark:text-amber-400'
-              : 'border-[#FCA5A5] dark:border-red-800 bg-[#FEF2F2] dark:bg-red-950/40 text-[#DC2626] dark:text-red-400'
-          }`}
+          className="mt-4 rounded-md border border-border-strong bg-surface-raised p-3 text-xs text-text"
           role="alert"
         >
           <div className="flex items-start gap-2">
-            <svg className="h-4 w-4 shrink-0 text-[#DC2626] dark:text-red-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
+            <span className="font-bold text-sm shrink-0 mt-0.5">✕</span>
             <div>
               <p className="font-bold">{apiError.message}</p>
             </div>
@@ -270,8 +273,8 @@ export default function LeadCreateForm({ onLeadCreated }) {
         {/* Row 1: lead_id & source */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
-            <label htmlFor="lead_id" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Lead ID <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="lead_id" className="block text-[11px] font-bold text-text">
+              Lead ID <span className="text-text-muted">*</span>
             </label>
             <input
               type="text"
@@ -281,20 +284,22 @@ export default function LeadCreateForm({ onLeadCreated }) {
               onChange={handleChange}
               disabled={isSubmitting}
               placeholder="e.g., LEAD-2026-001"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.lead_id
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.lead_id && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.lead_id}</p>
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.lead_id}
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="source" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Source Channel <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="source" className="block text-[11px] font-bold text-text">
+              Source Channel <span className="text-text-muted">*</span>
             </label>
             <input
               type="text"
@@ -304,14 +309,16 @@ export default function LeadCreateForm({ onLeadCreated }) {
               onChange={handleChange}
               disabled={isSubmitting}
               placeholder="e.g., Website, Phone, Referral"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.source
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.source && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.source}</p>
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.source}
+              </p>
             )}
           </div>
         </div>
@@ -319,8 +326,8 @@ export default function LeadCreateForm({ onLeadCreated }) {
         {/* Row 2: customer_type & vehicle */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
-            <label htmlFor="customer_type" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Customer Type <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="customer_type" className="block text-[11px] font-bold text-text">
+              Customer Type <span className="text-text-muted">*</span>
             </label>
             <input
               type="text"
@@ -330,20 +337,22 @@ export default function LeadCreateForm({ onLeadCreated }) {
               onChange={handleChange}
               disabled={isSubmitting}
               placeholder="e.g., Fleet Owner, Garage, Retail"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.customer_type
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.customer_type && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.customer_type}</p>
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.customer_type}
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="vehicle" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Vehicle Model <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="vehicle" className="block text-[11px] font-bold text-text">
+              Vehicle Model <span className="text-text-muted">*</span>
             </label>
             <input
               type="text"
@@ -353,14 +362,16 @@ export default function LeadCreateForm({ onLeadCreated }) {
               onChange={handleChange}
               disabled={isSubmitting}
               placeholder="e.g., Tata Prima 4028.S, Ashok Leyland"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.vehicle
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.vehicle && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.vehicle}</p>
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.vehicle}
+              </p>
             )}
           </div>
         </div>
@@ -368,8 +379,8 @@ export default function LeadCreateForm({ onLeadCreated }) {
         {/* Row 3: part_needed & estimated_order_value_inr */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div>
-            <label htmlFor="part_needed" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Part Needed <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="part_needed" className="block text-[11px] font-bold text-text">
+              Part Needed <span className="text-text-muted">*</span>
             </label>
             <input
               type="text"
@@ -379,20 +390,22 @@ export default function LeadCreateForm({ onLeadCreated }) {
               onChange={handleChange}
               disabled={isSubmitting}
               placeholder="e.g., Brake Shoe Set, Turbocharger"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.part_needed
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.part_needed && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.part_needed}</p>
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.part_needed}
+              </p>
             )}
           </div>
 
           <div>
-            <label htmlFor="estimated_order_value_inr" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-              Estimated Order Value (INR) <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+            <label htmlFor="estimated_order_value_inr" className="block text-[11px] font-bold text-text">
+              Estimated Order Value (INR) <span className="text-text-muted">*</span>
             </label>
             <input
               type="number"
@@ -404,15 +417,15 @@ export default function LeadCreateForm({ onLeadCreated }) {
               min="0"
               step="1"
               placeholder="e.g., 25000"
-              className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+              className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
                 fieldErrors.estimated_order_value_inr
-                  ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                  : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-              } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                  ? 'border-border-strong focus:border-text focus:ring-text'
+                  : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+              } disabled:opacity-50`}
             />
             {fieldErrors.estimated_order_value_inr && (
-              <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">
-                {fieldErrors.estimated_order_value_inr}
+              <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+                <span>!</span> {fieldErrors.estimated_order_value_inr}
               </p>
             )}
           </div>
@@ -420,8 +433,8 @@ export default function LeadCreateForm({ onLeadCreated }) {
 
         {/* Row 4: message (Textarea) */}
         <div>
-          <label htmlFor="message" className="block text-[11px] font-bold text-[#172438] dark:text-[#F8FAFC]">
-            Customer Message / Problem Statement <span className="text-[#DC2626] dark:text-[#F87171]">*</span>
+          <label htmlFor="message" className="block text-[11px] font-bold text-text">
+            Customer Message / Problem Statement <span className="text-text-muted">*</span>
           </label>
           <textarea
             id="message"
@@ -431,27 +444,29 @@ export default function LeadCreateForm({ onLeadCreated }) {
             onChange={handleChange}
             disabled={isSubmitting}
             placeholder="Describe customer urgency, vehicle downtime, breakdown location, or fleet replacement urgency..."
-            className={`mt-1 block w-full rounded border px-2.5 py-1.5 text-xs text-[#172438] dark:text-[#F8FAFC] bg-white dark:bg-[#0F172A] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 ${
+            className={`mt-1 block w-full rounded-md border px-2.5 py-1.5 text-xs text-text bg-input-bg placeholder-text-muted focus:outline-none focus:ring-1 ${
               fieldErrors.message
-                ? 'border-[#FCA5A5] dark:border-red-800 focus:border-[#DC2626] dark:focus:border-red-500 focus:ring-[#DC2626] dark:focus:ring-red-500'
-                : 'border-[#DCE4EE] dark:border-[#26354D] focus:border-[#3678D4] dark:focus:border-[#60A5FA] focus:ring-[#3678D4] dark:focus:ring-[#60A5FA]'
-            } disabled:bg-[#F3F6FA] dark:disabled:bg-[#1E293B] disabled:text-slate-400`}
+                ? 'border-border-strong focus:border-text focus:ring-text'
+                : 'border-input-border focus:border-input-focus focus:ring-input-focus'
+            } disabled:opacity-50`}
           />
           {fieldErrors.message && (
-            <p className="mt-1 text-[11px] font-medium text-[#DC2626] dark:text-[#F87171]">{fieldErrors.message}</p>
+            <p className="mt-1 text-[11px] font-medium text-text flex items-center gap-1">
+              <span>!</span> {fieldErrors.message}
+            </p>
           )}
         </div>
 
-        {/* Action Button */}
+        {/* Action Button: Primary button (Solid white with black text in dark, solid black in light) */}
         <div className="pt-1">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex w-full items-center justify-center gap-1.5 rounded bg-[#3678D4] hover:bg-[#2A62B6] text-white px-3.5 py-2 text-xs font-bold shadow-btn btn-interactive focus-ring disabled:cursor-not-allowed disabled:bg-slate-300 dark:disabled:bg-slate-700"
+            className="flex w-full items-center justify-center gap-1.5 rounded-md bg-accent text-accent-contrast hover:bg-accent-hover px-3.5 py-2 text-xs font-bold shadow-xs focus-ring transition-colors disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSubmitting ? (
               <>
-                <svg className="h-3.5 w-3.5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                <svg className="h-3.5 w-3.5 animate-spin text-accent-contrast" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path
                     className="opacity-75"

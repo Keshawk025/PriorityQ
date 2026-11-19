@@ -223,3 +223,29 @@ def get_metrics(db: Session) -> MetricsResponse:
         status_counts=status_counts,
         predicted_priority_counts=predicted_priority_counts,
     )
+
+
+def clear_all_leads(db: Session) -> int:
+    """Delete all leads from the database.
+    
+    Args:
+        db: Active database session.
+        
+    Returns:
+        int: Number of deleted records.
+    """
+    count = db.query(Lead).delete()
+    db.commit()
+    return count
+
+
+def delete_lead(db: Session, lead: Lead) -> None:
+    """Delete a single lead entity from the database.
+    
+    Args:
+        db: Active database session.
+        lead: Lead ORM entity to delete.
+    """
+    db.delete(lead)
+    db.commit()
+

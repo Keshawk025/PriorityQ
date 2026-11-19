@@ -21,7 +21,9 @@ from app.services.lead_service import (
     ALLOWED_SORTS,
     ALLOWED_STATUSES,
     DuplicateLeadError,
+    clear_all_leads,
     create_lead,
+    delete_lead,
     get_lead_by_id,
     get_leads,
     update_lead,
@@ -176,3 +178,31 @@ def patch_lead(
 
     updated_lead = update_lead(db=db, lead=lead, lead_update=lead_update)
     return updated_lead
+
+
+@router.delete("", summary="Delete all leads / clear pipeline database")
+def delete_all_leads_route(db: Session = Depends(get_db)):
+    """Clear all lead records from the database.
+    
+    Returns:
+        dict: Confirmation message and count of deleted records.
+    """
+    deleted_count = clear_all_leads(db=db)
+    return {
+        "message": "Database pipeline cleared successfully",
+        "deleted_count": deleted_count,
+    }
+
+
+@router.delete("/{id}", summary="Delete lead by ID")
+def delete_single_lead_route(id: int, db: Session = Depends(get_db)):
+    """Delete a single lead by its internal database ID."""
+    lead = get_lead_by_id(db=db, lead_id=id)
+    if lead is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Lead with id {id} not found",
+        )
+    delete_lead(db=db, lead=lead)
+    return {"message": f"Lead {id} deleted successfully"}
+

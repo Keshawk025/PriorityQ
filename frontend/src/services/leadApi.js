@@ -398,3 +398,74 @@ export async function importLeadsCsvApi(file) {
 
   return data;
 }
+
+/**
+ * Generates and triggers download of a sample CSV template for lead import.
+ * Header matches required lead fields: lead_id, source_channel, customer_type, vehicle_model, part_needed, estimated_order_value, message
+ */
+export function downloadSampleCsv() {
+  const headers = 'lead_id,source_channel,customer_type,vehicle_model,part_needed,estimated_order_value,message';
+  const sampleRows = [
+    'LEAD-2001,Website Form,Fleet Owner,Tata Prima 4028.S,Brake Valve,14500,"Emergency breakdown on highway with perishable load. Needs express dispatch within 2 hours."',
+    'LEAD-2002,Phone Inbound,Independent Workshop,Mahindra Bolero,Clutch Plate,8200,"Routine maintenance scheduled for weekend overhaul. Require parts by Friday afternoon."',
+    'LEAD-2003,WhatsApp,Retail Buyer,Maruti Super Carry,Oil Filter Pack,3500,"Inquiring about bulk discount price for regular stock replenishment."'
+  ];
+  const csvContent = [headers, ...sampleRows].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', 'prioritiq_sample_leads.csv');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+/**
+ * Permanently clears all leads from the active database pipeline.
+ *
+ * @returns {Promise<Object>} Response with deleted count
+ */
+export async function clearAllLeadsApi() {
+  const response = await fetch(`${API_BASE_URL}/leads`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    const error = new Error(data?.detail || 'Failed to clear database pipeline');
+    error.status = response.status;
+    error.data = data;
+    throw error;
+  }
+  return data;
+}
+
+/**
+ * Deletes a single lead by its database ID.
+ *
+ * @param {number} id
+ * @returns {Promise<Object>}
+ */
+export async function deleteLeadApi(id) {
+  const response = await fetch(`${API_BASE_URL}/leads/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    const error = new Error(data?.detail || `Failed to delete lead ${id}`);
+    error.status = response.status;
+    error.data = data;
+    throw error;
+  }
+  return data;
+}
+

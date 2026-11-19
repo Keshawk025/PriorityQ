@@ -80,14 +80,29 @@ def parse_and_validate_csv_file(file_bytes: bytes, filename: Optional[str] = Non
     # Strip column names
     clean_fieldnames = [col.strip() for col in reader.fieldnames if col is not None]
 
-    # 5. Check required columns
-    missing_columns = [col for col in REQUIRED_COLUMNS if col not in clean_fieldnames]
+    # Map column aliases to canonical names if canonical is not already present
+    header_map = {}
+    for col in clean_fieldnames:
+        mapped = col
+        if col == "source_channel" and "source" not in clean_fieldnames:
+            mapped = "source"
+        elif col == "vehicle_model" and "vehicle" not in clean_fieldnames:
+            mapped = "vehicle"
+        elif col == "estimated_order_value" and "estimated_order_value_inr" not in clean_fieldnames:
+            mapped = "estimated_order_value_inr"
+        header_map[col] = mapped
+
+    # 5. Check required columns against mapped headers
+    effective_columns = set(header_map.values())
+    missing_columns = [col for col in REQUIRED_COLUMNS if col not in effective_columns]
     if missing_columns:
         raise CSVValidationError(
             f"Missing required CSV column(s): {', '.join(missing_columns)}. "
             f"Required columns are: {', '.join(REQUIRED_COLUMNS)}"
         )
 
+    # Attach header_map to reader for row iteration
+    reader.header_map = header_map
     return reader
 
 
@@ -135,13 +150,15 @@ def process_lead_import(
     import_time = datetime.now(timezone.utc)
 
     # Iterate through data rows (Row 1 is header, data starts at Row 2)
+    header_map = getattr(reader, "header_map", {})
     for row_idx, raw_row in enumerate(reader, start=2):
-        # Clean whitespace from all row values
-        row = {
-            k.strip(): (v.strip() if v is not None else "")
-            for k, v in raw_row.items()
-            if k is not None
-        }
+        # Clean whitespace from all row values and apply header aliases
+        row = {}
+        for k, v in raw_row.items():
+            if k is not None:
+                cleaned_k = k.strip()
+                canonical_k = header_map.get(cleaned_k, cleaned_k)
+                row[canonical_k] = v.strip() if v is not None else ""
 
         # 1. Validate required fields are not empty
         missing_fields = [
