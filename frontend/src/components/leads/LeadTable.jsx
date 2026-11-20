@@ -78,7 +78,15 @@ export default function LeadTable({ refreshTrigger, onOpenCsvImport, onDataChang
     setSkip(0);
   };
 
-  const handleToggleSort = () => {
+  const handleTogglePrioritySort = () => {
+    // If not currently sorting by priority, default to High to Low (highest urgency first)
+    // If already priority_desc, switch to priority_asc (Low to High), and vice versa
+    const nextSort = sortOrder === 'priority_desc' ? 'priority_asc' : 'priority_desc';
+    setSortOrder(nextSort);
+    setSkip(0);
+  };
+
+  const handleToggleDateSort = () => {
     const nextSort = sortOrder === 'newest' ? 'oldest' : 'newest';
     setSortOrder(nextSort);
     setSkip(0);
@@ -279,7 +287,7 @@ export default function LeadTable({ refreshTrigger, onOpenCsvImport, onDataChang
         {/* Filter and Search Bar */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 pt-0.5">
           {/* Search Input Form */}
-          <form onSubmit={handleSearchSubmit} className="sm:col-span-5 relative">
+          <form onSubmit={handleSearchSubmit} className="sm:col-span-4 relative">
             <div className="relative">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2.5">
                 <svg className="h-3.5 w-3.5 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -321,30 +329,33 @@ export default function LeadTable({ refreshTrigger, onOpenCsvImport, onDataChang
           </form>
 
           {/* Status Filter Dropdown */}
-          <div className="sm:col-span-3">
+          <div className="sm:col-span-2">
             <select
               value={statusFilter}
               onChange={handleStatusChange}
-              className="block w-full rounded-md border border-input-border py-1.5 px-2.5 text-xs text-text bg-input-bg focus:border-input-focus focus:outline-none focus:ring-1 focus:ring-input-focus transition-colors"
+              className="block w-full rounded-md border border-input-border py-1.5 px-2 text-xs text-text bg-input-bg focus:border-input-focus focus:outline-none focus:ring-1 focus:ring-input-focus transition-colors"
             >
               {STATUS_OPTIONS.map((status) => (
                 <option key={status} value={status}>
-                  {status === 'All' ? 'All Statuses' : `Status: ${status}`}
+                  {status === 'All' ? 'All Statuses' : status}
                 </option>
               ))}
             </select>
           </div>
 
-          {/* Sort Order Selector */}
-          <div className="sm:col-span-2">
+          {/* Sort Order Selector: Priority (High/Medium/Low) & Creation Date */}
+          <div className="sm:col-span-4">
             <select
               value={sortOrder}
               onChange={handleSortChange}
               className="block w-full rounded-md border border-input-border py-1.5 px-2 text-xs text-text bg-input-bg focus:border-input-focus focus:outline-none focus:ring-1 focus:ring-input-focus transition-colors"
-              title="Sort leads by creation time"
+              title="Sort leads by priority (High/Medium/Low) or creation time"
+              aria-label="Sort leads by priority or creation time"
             >
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
+              <option value="newest">Added On: Newest First</option>
+              <option value="oldest">Added On: Oldest First</option>
+              <option value="priority_desc">Priority: High → Medium → Low</option>
+              <option value="priority_asc">Priority: Low → Medium → High</option>
             </select>
           </div>
 
@@ -393,18 +404,54 @@ export default function LeadTable({ refreshTrigger, onOpenCsvImport, onDataChang
               <th scope="col" className="px-3.5 py-2.5 w-40">Customer &amp; Channel</th>
               <th scope="col" className="px-3.5 py-2.5">Vehicle &amp; Part</th>
               <th scope="col" className="px-3.5 py-2.5 text-right w-28">Order Value</th>
-              <th scope="col" className="px-3.5 py-2.5 w-28">Priority</th>
+              <th scope="col" className="px-3.5 py-2.5 w-32">
+                <button
+                  type="button"
+                  onClick={handleTogglePrioritySort}
+                  className="group inline-flex items-center gap-1 font-bold uppercase tracking-wider text-[10px] focus:outline-none transition-colors hover:text-text"
+                  title={
+                    sortOrder === 'priority_desc'
+                      ? 'Sorted: High (Red) → Medium (Amber) → Low (Green). Click for Low → High.'
+                      : sortOrder === 'priority_asc'
+                      ? 'Sorted: Low (Green) → Medium (Amber) → High (Red). Click for High → Low.'
+                      : 'Click to sort by priority: High (Red) → Medium (Amber) → Low (Green)'
+                  }
+                  aria-label="Sort by Priority level"
+                >
+                  <span className={sortOrder.startsWith('priority') ? 'text-text font-black' : 'text-text-muted'}>
+                    Priority
+                  </span>
+                  <span className="font-mono text-xs">
+                    {sortOrder === 'priority_desc' ? (
+                      <span className="text-red-500 font-bold" title="High to Low">↓</span>
+                    ) : sortOrder === 'priority_asc' ? (
+                      <span className="text-emerald-500 font-bold" title="Low to High">↑</span>
+                    ) : (
+                      <span className="text-text-muted opacity-40 group-hover:opacity-100">↕</span>
+                    )}
+                  </span>
+                </button>
+              </th>
               <th scope="col" className="px-3.5 py-2.5 w-24">Status</th>
               <th scope="col" className="px-3.5 py-2.5 w-44">
                 <button
                   type="button"
-                  onClick={handleToggleSort}
-                  className="group inline-flex items-center gap-1 font-bold text-text-muted hover:text-text uppercase tracking-wider text-[10px] focus:outline-none transition-colors"
-                  title={`Sorted by ${sortOrder === 'newest' ? 'newest first' : 'oldest first'}. Click to toggle.`}
+                  onClick={handleToggleDateSort}
+                  className="group inline-flex items-center gap-1 font-bold uppercase tracking-wider text-[10px] focus:outline-none transition-colors hover:text-text"
+                  title={`Sorted by ${sortOrder === 'newest' ? 'newest first' : sortOrder === 'oldest' ? 'oldest first' : 'custom'}. Click to toggle date sort.`}
+                  aria-label="Sort by Added On date"
                 >
-                  <span>Added On (IST)</span>
+                  <span className={sortOrder === 'newest' || sortOrder === 'oldest' ? 'text-text font-black' : 'text-text-muted'}>
+                    Added On (IST)
+                  </span>
                   <span className="font-mono text-xs text-text">
-                    {sortOrder === 'newest' ? '↓' : '↑'}
+                    {sortOrder === 'newest' ? (
+                      '↓'
+                    ) : sortOrder === 'oldest' ? (
+                      '↑'
+                    ) : (
+                      <span className="text-text-muted opacity-40 group-hover:opacity-100">↕</span>
+                    )}
                   </span>
                 </button>
               </th>

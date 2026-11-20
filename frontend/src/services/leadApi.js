@@ -131,7 +131,17 @@ export async function fetchLeadsApi({ skip = 0, limit = 25, search = '', status 
     queryParams.append('status', status.trim());
   }
 
-  if (sort && (sort === 'newest' || sort === 'oldest')) {
+  if (
+    sort &&
+    [
+      'newest',
+      'oldest',
+      'priority_desc',
+      'priority_asc',
+      'priority_high',
+      'priority_low',
+    ].includes(sort)
+  ) {
     queryParams.append('sort', sort);
   }
 

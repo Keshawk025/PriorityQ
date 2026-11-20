@@ -6,7 +6,7 @@ status/priority updates, and aggregation metrics calculation.
 
 from datetime import datetime, timezone
 from typing import List, Optional, Tuple
-from sqlalchemy import func, or_
+from sqlalchemy import case, func, or_
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -20,7 +20,14 @@ from app.services.ml_service import (
 
 ALLOWED_STATUSES = ("New", "Contacted", "Qualified", "Closed")
 ALLOWED_PRIORITIES = ("High", "Medium", "Low")
-ALLOWED_SORTS = ("newest", "oldest")
+ALLOWED_SORTS = (
+    "newest",
+    "oldest",
+    "priority_desc",
+    "priority_asc",
+    "priority_high",
+    "priority_low",
+)
 
 
 class DuplicateLeadError(Exception):
@@ -72,7 +79,19 @@ def get_leads(
     total = query.count()
 
     # Sorting support
-    if sort == "newest":
+    effective_prio = func.coalesce(Lead.override_priority, Lead.predicted_priority)
+    prio_rank = case(
+        (effective_prio == "High", 1),
+        (effective_prio == "Medium", 2),
+        (effective_prio == "Low", 3),
+        else_=4,
+    )
+
+    if sort in ("priority_desc", "priority_high"):
+        query = query.order_by(prio_rank.asc(), Lead.created_at.desc(), Lead.id.desc())
+    elif sort in ("priority_asc", "priority_low"):
+        query = query.order_by(prio_rank.desc(), Lead.created_at.desc(), Lead.id.desc())
+    elif sort == "newest":
         query = query.order_by(Lead.created_at.desc(), Lead.id.desc())
     elif sort == "oldest":
         query = query.order_by(Lead.created_at.asc(), Lead.id.asc())

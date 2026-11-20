@@ -349,6 +349,131 @@ def test_get_leads_sort_oldest(sample_leads):
     assert data["leads"][-1]["lead_id"] == "LEAD-104"
 
 
+def test_get_leads_sort_priority_desc(sample_leads):
+    """Verify sort=priority_desc returns leads ordered High -> Medium -> Low."""
+    response = client.get("/leads?sort=priority_desc")
+    assert response.status_code == 200
+    data = response.json()
+    leads = data["leads"]
+    assert len(leads) == 4
+
+    # Calculate effective priority for each lead in order
+    effective_priorities = [
+        lead["override_priority"] or lead["predicted_priority"]
+        for lead in leads
+    ]
+    # In sample_leads:
+    # LEAD-101: High
+    # LEAD-102: override High (predicted Medium)
+    # LEAD-104: High
+    # LEAD-103: Low
+    # Descending priority must place all Highs first, followed by Lows (since no Medium remains after override)
+    assert effective_priorities[0] == "High"
+    assert effective_priorities[1] == "High"
+    assert effective_priorities[2] == "High"
+    assert effective_priorities[3] == "Low"
+
+
+def test_get_leads_sort_priority_asc(sample_leads):
+    """Verify sort=priority_asc returns leads ordered Low -> Medium -> High."""
+    response = client.get("/leads?sort=priority_asc")
+    assert response.status_code == 200
+    data = response.json()
+    leads = data["leads"]
+    assert len(leads) == 4
+
+    effective_priorities = [
+        lead["override_priority"] or lead["predicted_priority"]
+        for lead in leads
+    ]
+    # Ascending priority must place Low first, followed by Highs
+    assert effective_priorities[0] == "Low"
+    assert effective_priorities[1] == "High"
+    assert effective_priorities[2] == "High"
+    assert effective_priorities[3] == "High"
+
+
+def test_get_leads_sort_priority_all_tiers(db_session):
+    """Verify priority sorting with all three tiers (High, Medium, Low) including aliases."""
+    tier_leads = [
+        Lead(
+            lead_id="TIER-MED",
+            source="Website",
+            customer_type="Independent Mechanic",
+            vehicle="Tata Ace",
+            part_needed="Filter",
+            estimated_order_value_inr=5000,
+            message="Need oil filter",
+            predicted_priority="Medium",
+            confidence=0.75,
+            status="New",
+        ),
+        Lead(
+            lead_id="TIER-LOW",
+            source="Website",
+            customer_type="Retail",
+            vehicle="Bolero",
+            part_needed="Bolt",
+            estimated_order_value_inr=500,
+            message="Need bolt",
+            predicted_priority="Low",
+            confidence=0.6,
+            status="New",
+        ),
+        Lead(
+            lead_id="TIER-HIGH",
+            source="Fleet",
+            customer_type="Fleet Owner",
+            vehicle="Eicher",
+            part_needed="Engine",
+            estimated_order_value_inr=45000,
+            message="Urgent engine assembly",
+            predicted_priority="High",
+            confidence=0.95,
+            status="New",
+        ),
+    ]
+    for l in tier_leads:
+        db_session.add(l)
+    db_session.commit()
+
+    # Test priority_desc (High -> Medium -> Low)
+    res_desc = client.get("/leads?sort=priority_desc")
+    assert res_desc.status_code == 200
+    order_desc = [
+        l["override_priority"] or l["predicted_priority"]
+        for l in res_desc.json()["leads"]
+    ]
+    assert order_desc == ["High", "Medium", "Low"]
+
+    # Test priority_high alias
+    res_high = client.get("/leads?sort=priority_high")
+    assert res_high.status_code == 200
+    order_high = [
+        l["override_priority"] or l["predicted_priority"]
+        for l in res_high.json()["leads"]
+    ]
+    assert order_high == ["High", "Medium", "Low"]
+
+    # Test priority_asc (Low -> Medium -> High)
+    res_asc = client.get("/leads?sort=priority_asc")
+    assert res_asc.status_code == 200
+    order_asc = [
+        l["override_priority"] or l["predicted_priority"]
+        for l in res_asc.json()["leads"]
+    ]
+    assert order_asc == ["Low", "Medium", "High"]
+
+    # Test priority_low alias
+    res_low = client.get("/leads?sort=priority_low")
+    assert res_low.status_code == 200
+    order_low = [
+        l["override_priority"] or l["predicted_priority"]
+        for l in res_low.json()["leads"]
+    ]
+    assert order_low == ["Low", "Medium", "High"]
+
+
 def test_get_leads_invalid_sort():
     """Verify invalid sort parameter returns HTTP 400 Bad Request."""
     response = client.get("/leads?sort=random_sort")
