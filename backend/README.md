@@ -100,15 +100,30 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 Execute the test suite using `pytest`:
 
 ```bash
-pytest -v
+PYTHONPATH=. pytest tests/ -v
 ```
+
+The test suite contains **109 automated tests** verifying:
+- Model inference, confidence scores, and priority classification
+- SQLite database integrity and unique constraints
+- Server-generated timestamps (`created_at`, `updated_at`)
+- Human-in-the-loop priority override logic and clearing
+- Priority ranking and sorting (`priority_desc` High $\to$ Medium $\to$ Low, `priority_asc` Low $\to$ Medium $\to$ High)
+- CSV batch import, delimiter sniffing (`,`, `;`, `\t`, `|`), header normalization, and error isolation
+- Pipeline metrics and lifecycle conversion calculations
+- Database pipeline clearing (`DELETE /leads`)
 
 ---
 
-## 7. Upcoming Roadmap
+## 7. API Endpoints Reference
 
-- **Task 2.2**: Implement SQLAlchemy `Lead` database model and database migration setup.
-- **Task 2.3**: Define Pydantic schemas for Lead ingestion, response, and priority update.
-- **Task 2.4**: Build Scikit-learn lead prioritization inference service with dynamic priority calculation:
-  $$\text{effective\_priority} = \text{override\_priority} \text{ if present else } \text{predicted\_priority}$$
-- **Task 2.5**: CSV import and bulk batch scoring API endpoints.
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Health check endpoint returning service status. |
+| `POST` | `/leads` | Ingest a new lead, execute ML scoring, and commit to DB. |
+| `GET` | `/leads` | Query leads with pagination, search, status filtering, and sorting (`newest`, `oldest`, `priority_desc`, `priority_asc`). |
+| `GET` | `/leads/{id}` | Retrieve a specific lead by its integer ID. |
+| `PATCH` | `/leads/{id}` | Update lead status (`New`, `Contacted`, `Qualified`, `Closed`) or override priority (`High`, `Medium`, `Low`, or `null`). |
+| `DELETE` | `/leads` | Clear all leads from the active database pipeline. |
+| `POST` | `/leads/import` | Upload CSV for batch ingestion with auto-delimiter sniffing and header alias mapping. |
+| `GET` | `/metrics` | Real-time pipeline aggregations and priority distribution breakdown. |

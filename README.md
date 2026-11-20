@@ -6,7 +6,7 @@
 [![Vite](https://img.shields.io/badge/Vite-6.4-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Tests Passing](https://img.shields.io/badge/Tests-106%20Passed-brightgreen.svg)](https://pytest.org/)
+[![Tests Passing](https://img.shields.io/badge/Tests-109%20Passed-brightgreen.svg)](https://pytest.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **PrioritiQ CRM** is an enterprise-grade AI-powered lead triage and sales prioritization platform designed specifically for commercial automotive spare parts dealerships, distributors, and fleet logistics desks.
@@ -47,20 +47,42 @@ When commercial trucks and fleet vehicles break down on transport corridors, eve
 - **Server-Generated IST Timestamps**: Tracks when each lead enters the CRM (`created_at`) displayed in readable Indian Standard Time (e.g. `15 Nov 2026, 1:30 PM`) with newest/oldest sorting.
 - **Human-in-the-Loop Override Engine**: Sales reps can adjust the active `override_priority` for VIP or strategic accounts, instantly updating the `effective_priority` while preserving the original AI prediction.
 
-### 3. High-Volume RFC 4180 CSV Ingestion
-- Batch upload historical or external lead lists up to 10MB.
-- Automated column header mapping, data type verification, and per-row error diagnostics.
-- **Partial Acceptance Guarantee**: Valid rows are ingested, scored, and committed, while invalid rows are isolated with detailed failure reports.
+### 3. Priority Level Sorting (High → Medium → Low & Low → Medium → High)
+- **Urgency-Aware SQL Ranking**: Sorting alphabetically places `"Low"` before `"Medium"`. PrioritiQ implements custom SQL `case()` ranking prioritizing urgency:
+  - **High** (P1) $\to$ `Rank 1`
+  - **Medium** (P2) $\to$ `Rank 2`
+  - **Low** (P3) $\to$ `Rank 3`
+- **Sales Rep Override Coalescence**: Evaluates `func.coalesce(Lead.override_priority, Lead.predicted_priority)` so human adjustments take precedence over ML predictions in the sorted queue.
+- **Interactive CRM Table Controls**:
+  - Interactive clickable **"Priority"** column header toggling between **High → Medium → Low** (urgent triage first) and **Low → Medium → High**, complete with visual indicators (`↓` Red, `↑` Green, `↕` Neutral).
+  - Dedicated sort dropdown in the toolbar supporting `newest`, `oldest`, `priority_desc`, and `priority_asc`.
+  - Secondary tie-breaking by `created_at DESC, id DESC`.
 
-### 4. Real-Time Pipeline Analytics
+### 4. Resilient CSV Ingestion & Smart Header Normalization
+- **Broad File & MIME Type Acceptance**: Supports `.csv`, `text/csv`, `text/plain`, `application/vnd.ms-excel`, and all OS variations without browser file picker rejections.
+- **Automatic Delimiter Sniffing**: Auto-detects commas (`,`), semicolons (`;`), tabs (`\t`), and pipes (`|`).
+- **Smart Column Header Normalization**: Automatically maps header aliases (e.g., `Client` / `Buyer` $\to$ `customer_type`, `Price` / `Amount` / `EOV` $\to$ `estimated_order_value_inr`, `Notes` / `Description` $\to$ `message`).
+- **Data Sanitization**: Strips currency symbols (`$`, `₹`, `Rs.`), thousands separators, and whitespace.
+- **Partial Acceptance Guarantee**: Valid rows are ingested, scored, and committed; invalid rows are isolated with per-row diagnostics.
+
+### 5. Pipeline Lifecycle Clearing (`DELETE /leads`)
+- Full pipeline clear capability via `DELETE /leads` endpoint and one-click "Clear Pipeline" toolbar button.
+- Protected by a safety confirmation modal to prevent accidental data loss.
+
+### 6. Real-Time Pipeline Analytics
 - Instant visibility into total pipeline volume, priority breakdown distribution bar, and 4-stage lifecycle conversion funnel (**New** → **Contacted** → **Qualified** → **Closed**).
 - Zero reliance on slow batch reporting; metrics sync automatically after every action.
 
-### 5. Professional Dark & Light Mode Design System
-- Custom-engineered dual theme system with persistent state (`localStorage`), OS preference matching, and **zero Flash of Unstyled Theme (FOUC)** via synchronous initialization.
-- Premium glassmorphic top navigation bar with accessible Sun/Moon theme toggling.
+### 7. Pure AMOLED Minimalist Theme & PrioritiQ Tri-Color Brand Identity
+- **Pitch Black AMOLED Dark Mode (`#000000`) & Crisp Light Mode (`#FFFFFF`)**: Zero gray-tint compromises; built for high-contrast visibility on dispatch floor displays and mobile devices.
+- **Immutable Priority Color Safety Standard**: Urgency colors are strictly preserved everywhere across both themes:
+  - **High Urgency**: Red (`#EF4444`)
+  - **Medium Urgency**: Amber / Yellow (`#F59E0B`)
+  - **Low Urgency**: Emerald / Green (`#10B981`)
+- **PrioritiQ Logo Badge**: Brand mark featuring geometric lettermark and tri-color triage dots on navbar, page headers, footers, and favicon.
+- **Zero FOUC**: Synchronous initialization prevents Flash of Unstyled Theme on initial page render.
 
-### 6. Public Product Website
+### 8. Public Product Website
 - Fully featured public-facing website including **Home** (`/`), **Features** (`/features`), **How It Works** (`/how-it-works`), **Privacy Policy** (`/privacy`), and confirmation routing (`/thank-you`), seamlessly driving traffic to the CRM application (`/app`).
 
 ---
@@ -105,7 +127,7 @@ When commercial trucks and fleet vehicles break down on transport corridors, eve
 - **Backend**: FastAPI 0.110+, Uvicorn, Pydantic v2, Pydantic-Settings, Python-Multipart.
 - **Data & ORM**: SQLite (default local) / PostgreSQL compatible, SQLAlchemy 2.0+.
 - **Machine Learning**: Scikit-Learn 1.4+, Pandas 2.2+, NumPy 1.26+, Joblib.
-- **Testing**: Pytest 8.1+, HTTPX (106 unit and integration test suite).
+- **Testing**: Pytest 8.1+, HTTPX (109 unit and integration test suite).
 
 ---
 
@@ -122,19 +144,19 @@ When commercial trucks and fleet vehicles break down on transport corridors, eve
 │   │   └── services/             # Business logic layer (ML inference, CSV parser, lead service)
 │   ├── ml_models/
 │   │   └── lead_priority_model.pkl # Pre-trained Scikit-learn TF-IDF + Logistic Regression model
-│   ├── tests/                    # 106 automated tests (API, ML model, DB, CSV import, timestamps)
+│   ├── tests/                    # 109 automated tests (API, ML model, DB, CSV import, priority sorting)
 │   ├── requirements.txt          # Backend Python dependencies
 │   └── README.md                 # Backend-specific documentation
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── common/           # Shared UI components (ThemeToggle, etc.)
-│   │   │   ├── layout/           # App layout, Header, Top Navigation
+│   │   │   ├── common/           # Shared UI components (ThemeToggle, Logo, ConfirmationModal)
+│   │   │   ├── layout/           # App layout, Header, Top Navigation, Footer
 │   │   │   ├── dashboard/        # DashboardShell, MetricsCards, LifecycleFunnel
 │   │   │   ├── leads/            # LeadTable, LeadCreateForm, LeadDetailModal, CsvImportModal
 │   │   │   ├── website/          # Public pages (HomePage, FeaturesPage, HowItWorksPage, PrivacyPage)
 │   │   │   └── crm/              # CrmApp root controller
-│   │   ├── context/              # ThemeContext (Dark/Light mode state & persistence)
+│   │   ├── context/              # ThemeContext (AMOLED Dark/Light mode state & persistence)
 │   │   ├── config/               # API URL resolution and environment helpers
 │   │   ├── App.jsx               # Client-side router & title synchronization
 │   │   └── index.css             # Tailwind directives and transition utilities
@@ -161,8 +183,8 @@ When commercial trucks and fleet vehicles break down on transport corridors, eve
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/ai-lead-prioritization-crm.git
-cd ai-lead-prioritization-crm
+git clone https://github.com/Keshawk025/PriorityQ.git
+cd PriorityQ
 ```
 
 ---
@@ -213,14 +235,16 @@ The frontend application is now running at [http://127.0.0.1:5173](http://127.0.
 
 ## Running the Automated Test Suite
 
-The backend includes a comprehensive automated test suite with **106 test cases** covering:
+The backend includes a comprehensive automated test suite with **109 test cases** covering:
 - Single lead ingestion and validation
 - Scikit-learn inference and priority scoring
 - Database constraints and uniqueness enforcement
-- Timestamp generation and IST formatting
+- Server-generated timestamp generation and IST formatting
 - Priority override retention and clearing
-- CSV batch parsing, partial acceptance, and error isolation
-- Pipeline analytics and aggregation queries
+- End-to-end priority level sorting (`priority_desc`, `priority_asc`, `priority_high`, `priority_low`)
+- Delimiter-agnostic CSV parsing (`,`, `;`, `\t`, `|`), header alias normalization, and partial acceptance
+- Real-time pipeline analytics and aggregation queries
+- Pipeline lifecycle clearing (`DELETE /leads`)
 
 Run all tests:
 ```bash
@@ -236,10 +260,11 @@ PYTHONPATH=. pytest tests/ -v
 | :--- | :--- | :--- |
 | `GET` | `/health` | Service health status and version metadata. |
 | `POST` | `/leads` | Create a lead, run ML classification, and persist record. |
-| `GET` | `/leads` | Paginated query supporting search, status filters, and sorting. |
+| `GET` | `/leads` | Paginated query supporting search, status filters, and sorting (`newest`, `oldest`, `priority_desc`, `priority_asc`). |
 | `GET` | `/leads/{id}` | Retrieve individual lead by unique Lead ID. |
 | `PATCH` | `/leads/{id}` | Update lifecycle status or apply/clear human priority override. |
-| `POST` | `/leads/import` | Upload RFC 4180 CSV file for batch validation and automated scoring. |
+| `DELETE` | `/leads` | Clear all leads from the active database pipeline. |
+| `POST` | `/leads/import` | Delimiter-agnostic CSV ingestion with smart header normalization and row-level diagnostics. |
 | `GET` | `/metrics` | Real-time pipeline KPI metrics and priority distribution counts. |
 
 ---
