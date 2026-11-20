@@ -7,6 +7,7 @@ ML priority inference, transaction safety, and persistent storage.
 import csv
 from datetime import datetime, timezone
 import io
+import re
 from typing import List, Optional, Set
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -28,6 +29,102 @@ REQUIRED_COLUMNS = [
     "estimated_order_value_inr",
     "message",
 ]
+
+# Comprehensive alias mapping for real-world CSV exports (Google Sheets, Excel, ERPs, CRM dumps)
+COLUMN_ALIASES = {
+    # lead_id
+    "lead_id": "lead_id",
+    "leadid": "lead_id",
+    "lead_no": "lead_id",
+    "leadno": "lead_id",
+    "lead_number": "lead_id",
+    "id": "lead_id",
+    "lead": "lead_id",
+    "inquiry_id": "lead_id",
+    "inquiryid": "lead_id",
+    "inquiry_no": "lead_id",
+
+    # source
+    "source": "source",
+    "source_channel": "source",
+    "sourcechannel": "source",
+    "channel": "source",
+    "origin": "source",
+    "inbound_source": "source",
+    "lead_source": "source",
+
+    # customer_type
+    "customer_type": "customer_type",
+    "customertype": "customer_type",
+    "customer": "customer_type",
+    "client_type": "customer_type",
+    "type": "customer_type",
+    "customer_category": "customer_type",
+    "buyer_type": "customer_type",
+
+    # vehicle
+    "vehicle": "vehicle",
+    "vehicle_model": "vehicle",
+    "vehiclemodel": "vehicle",
+    "model": "vehicle",
+    "vehicle_name": "vehicle",
+    "car": "vehicle",
+    "truck": "vehicle",
+    "commercial_vehicle": "vehicle",
+
+    # part_needed
+    "part_needed": "part_needed",
+    "partneeded": "part_needed",
+    "part": "part_needed",
+    "part_name": "part_needed",
+    "partname": "part_needed",
+    "item": "part_needed",
+    "item_name": "part_needed",
+    "required_part": "part_needed",
+    "spare_part": "part_needed",
+    "part_description": "part_needed",
+    "parts": "part_needed",
+
+    # estimated_order_value_inr
+    "estimated_order_value_inr": "estimated_order_value_inr",
+    "estimated_order_value": "estimated_order_value_inr",
+    "estimatedordervalue": "estimated_order_value_inr",
+    "order_value": "estimated_order_value_inr",
+    "order_value_inr": "estimated_order_value_inr",
+    "ordervalue": "estimated_order_value_inr",
+    "value": "estimated_order_value_inr",
+    "amount": "estimated_order_value_inr",
+    "order_amount": "estimated_order_value_inr",
+    "price": "estimated_order_value_inr",
+    "estimated_value": "estimated_order_value_inr",
+    "eov": "estimated_order_value_inr",
+
+    # message
+    "message": "message",
+    "customer_message": "message",
+    "customermessage": "message",
+    "problem": "message",
+    "problem_statement": "message",
+    "problemstatement": "message",
+    "issue": "message",
+    "inquiry": "message",
+    "description": "message",
+    "notes": "message",
+    "comment": "message",
+    "comments": "message",
+    "query": "message",
+}
+
+
+def normalize_column_header(header: str) -> str:
+    """Normalize column header: lowercase, strip quotes/whitespace/punctuation."""
+    if not header:
+        return ""
+    h = header.lower().strip().strip('"').strip("'")
+    h = h.replace(" ", "_").replace("-", "_").replace(".", "_")
+    while "__" in h:
+        h = h.replace("__", "_")
+    return h
 
 
 class CSVValidationError(ValueError):
@@ -56,21 +153,34 @@ def parse_and_validate_csv_file(file_bytes: bytes, filename: Optional[str] = Non
     if not file_bytes or not file_bytes.strip():
         raise CSVValidationError("Uploaded CSV file is empty.")
 
-    # 3. Decoding
+    # 3. Decoding: try common encodings including Excel Windows/Mac variants
     text_content: Optional[str] = None
-    for encoding in ("utf-8-sig", "utf-8", "latin-1"):
+    for encoding in ("utf-8-sig", "utf-8", "latin-1", "cp1252", "iso-8859-1", "utf-16"):
         try:
             text_content = file_bytes.decode(encoding)
             break
-        except UnicodeDecodeError:
+        except (UnicodeDecodeError, LookupError):
             continue
 
     if text_content is None or "\x00" in text_content:
         raise CSVValidationError("Malformed CSV file. Unable to parse text content.")
 
-    # 4. Parse CSV headers
+    # 4. Delimiter detection (supports comma, semicolon, tab, pipe)
+    delimiter = ","
     try:
-        reader = csv.DictReader(io.StringIO(text_content))
+        sample_snippet = text_content[:4096]
+        dialect = csv.Sniffer().sniff(sample_snippet, delimiters=[",", ";", "\t", "|"])
+        delimiter = dialect.delimiter
+    except Exception:
+        first_line = text_content.splitlines()[0] if text_content.splitlines() else ""
+        if ";" in first_line and first_line.count(";") > first_line.count(","):
+            delimiter = ";"
+        elif "\t" in first_line and first_line.count("\t") > first_line.count(","):
+            delimiter = "\t"
+
+    # Parse CSV headers
+    try:
+        reader = csv.DictReader(io.StringIO(text_content), delimiter=delimiter)
     except Exception as exc:
         raise CSVValidationError(f"Malformed CSV content: {str(exc)}") from exc
 
@@ -80,17 +190,12 @@ def parse_and_validate_csv_file(file_bytes: bytes, filename: Optional[str] = Non
     # Strip column names
     clean_fieldnames = [col.strip() for col in reader.fieldnames if col is not None]
 
-    # Map column aliases to canonical names if canonical is not already present
+    # Map column aliases to canonical names using comprehensive alias lookup
     header_map = {}
     for col in clean_fieldnames:
-        mapped = col
-        if col == "source_channel" and "source" not in clean_fieldnames:
-            mapped = "source"
-        elif col == "vehicle_model" and "vehicle" not in clean_fieldnames:
-            mapped = "vehicle"
-        elif col == "estimated_order_value" and "estimated_order_value_inr" not in clean_fieldnames:
-            mapped = "estimated_order_value_inr"
-        header_map[col] = mapped
+        norm = normalize_column_header(col)
+        canonical = COLUMN_ALIASES.get(norm, col)
+        header_map[col] = canonical
 
     # 5. Check required columns against mapped headers
     effective_columns = set(header_map.values())
@@ -184,9 +289,15 @@ def process_lead_import(
         order_val_str = row["estimated_order_value_inr"]
         message = row["message"]
 
-        # 2. Validate estimated_order_value_inr
+        # 2. Validate estimated_order_value_inr (handles currency signs, commas, decimals gracefully)
         try:
-            order_val = int(order_val_str)
+            val_trimmed = order_val_str.strip()
+            if val_trimmed.startswith("-"):
+                raise ValueError("Negative value")
+            num_match = re.search(r"\b\d+(\.\d+)?\b", val_trimmed.replace(",", ""))
+            if not num_match:
+                raise ValueError("No numeric digits")
+            order_val = int(float(num_match.group(0)))
             if order_val < 0:
                 raise ValueError("Negative value")
         except (ValueError, TypeError):

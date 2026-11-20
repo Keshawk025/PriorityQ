@@ -46,9 +46,15 @@ export default function SingleCsvImport({ onImportSuccess, className = '' }) {
     setUploadError(null);
     setImportResult(null);
 
-    // Client-side validation
-    const isCsvExtension = file.name.toLowerCase().endsWith('.csv');
-    const isCsvMime = !file.type || file.type === 'text/csv' || file.type === 'application/vnd.ms-excel';
+    // Client-side validation: accepts .csv extension or any CSV/spreadsheet/text MIME type
+    const fileName = (file.name || '').toLowerCase();
+    const isCsvExtension = fileName.endsWith('.csv') || fileName.endsWith('.tsv') || fileName.endsWith('.txt');
+    const isCsvMime = !file.type ||
+      file.type.includes('csv') ||
+      file.type.includes('excel') ||
+      file.type.includes('plain') ||
+      file.type.includes('text') ||
+      file.type.includes('octet-stream');
 
     if (!isCsvExtension && !isCsvMime) {
       setValidationError('Invalid file type: Please select a valid CSV file (.csv).');
@@ -106,11 +112,11 @@ export default function SingleCsvImport({ onImportSuccess, className = '' }) {
 
   return (
     <>
-      {/* Hidden Native File Input */}
+      {/* Hidden Native File Input: Broad CSV and text support across Windows, Mac, and Linux */}
       <input
         ref={fileInputRef}
         type="file"
-        accept=".csv,text/csv"
+        accept=".csv, .CSV, text/csv, application/vnd.ms-excel, text/plain, application/csv, text/x-csv, application/x-csv, text/comma-separated-values, text/x-comma-separated-values, application/octet-stream"
         className="sr-only"
         tabIndex={-1}
         aria-hidden="true"

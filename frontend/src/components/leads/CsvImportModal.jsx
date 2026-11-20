@@ -31,8 +31,14 @@ export default function CsvImportModal({ isOpen, onClose, onImportSuccess }) {
   };
 
   const validateFile = (file) => {
-    const isCsvExtension = file.name.toLowerCase().endsWith('.csv');
-    const isCsvMime = !file.type || file.type === 'text/csv' || file.type === 'application/vnd.ms-excel';
+    const fileName = (file.name || '').toLowerCase();
+    const isCsvExtension = fileName.endsWith('.csv') || fileName.endsWith('.tsv') || fileName.endsWith('.txt');
+    const isCsvMime = !file.type ||
+      file.type.includes('csv') ||
+      file.type.includes('excel') ||
+      file.type.includes('plain') ||
+      file.type.includes('text') ||
+      file.type.includes('octet-stream');
 
     if (!isCsvExtension && !isCsvMime) {
       return 'Not a valid CSV file (.csv)';
@@ -222,7 +228,7 @@ export default function CsvImportModal({ isOpen, onClose, onImportSuccess }) {
                   ref={fileInputRef}
                   type="file"
                   multiple
-                  accept=".csv,text/csv"
+                  accept=".csv, .CSV, text/csv, application/vnd.ms-excel, text/plain, application/csv, text/x-csv, application/x-csv, text/comma-separated-values, text/x-comma-separated-values, application/octet-stream"
                   onChange={handleFileInputChange}
                   disabled={isProcessing}
                   className="sr-only"
